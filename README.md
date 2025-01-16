@@ -9,3 +9,5 @@
 
 - [] font-awesome
 - [] npm i react-spinners
+
+이게 보이면 반영된겁니다.
