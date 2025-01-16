@@ -3,6 +3,7 @@ import mainBg from "./backgroundImg/mainBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
 import cursor from "../components/img/cursor.png";
+import npc1body from "../components/img/npc/1_body.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 
@@ -26,6 +27,14 @@ const Container = styled.div`
   }
 `;
 
+const Npc = styled.div`
+  position: absolute;
+  bottom: 8%;
+  left: 18%;
+  transform: scaleX(-1);
+  width: 140px;
+`;
+
 const PaintingWrap = styled.div`
   width: 60%;
   display: flex;
@@ -45,6 +54,15 @@ const Painting = styled.div`
   #frame {
     height: 400px;
   }
+
+  @media screen and (max-width: 1400px) {
+    width: 300px;
+    height: 300px;
+
+    #frame {
+      height: 300px;
+    }
+  }
 `;
 
 const Chat = styled.div`
@@ -58,7 +76,7 @@ const Chat = styled.div`
     width: 400px;
     position: absolute;
     top: 24%;
-    left: 54%;
+    left: 52%;
     transform: translateX(-50%);
     font-size: 26px;
     font-weight: 600;
@@ -116,6 +134,10 @@ const Main = () => {
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
+
+      <Npc>
+        <img src={npc1body} alt="여욱이" />
+      </Npc>
 
       <PaintingWrap>
         <Painting>
