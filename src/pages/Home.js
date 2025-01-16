@@ -14,18 +14,20 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 0 0 90px 0;
-  overflow: hidden;
-  img {
-    width: 45%;
-    height: auto;
-    margin: -20px auto;
-  }
+  /* overflow: hidden; */
 
   h3 {
     font-size: clamp(20px, 4vw, 35px);
     font-weight: bold;
     color: white;
+  }
+`;
+
+const Logo = styled.div`
+  img {
+    width: 850px;
+    height: auto;
+    margin: -20px auto;
   }
 `;
 
@@ -36,18 +38,20 @@ const Wrap = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  bottom: 90px;
 `;
 
 const ChatBox = styled.div`
-  width: 900px;
+  width: 45%;
   img {
     width: 100%;
     height: auto;
     margin-bottom: 50px;
   }
-  position: relative;
 
   h3 {
+    width: 500px;
     font-size: clamp(18px, 3.5vw, 33px);
     position: absolute;
     top: 20%;
@@ -71,7 +75,9 @@ const Npc1 = styled.div`
 const Home = () => {
   return (
     <Container>
-      <img src={logo} alt="로고" />
+      <Logo>
+        <img src={logo} alt="로고" />
+      </Logo>
       <Wrap>
         <ChatBox>
           <h3>
@@ -79,13 +85,13 @@ const Home = () => {
           </h3>
           <img src={chat1} alt="말풍선1_1" />
         </ChatBox>
-        <Npc1>
-          <img src={npc1body} alt="여욱이전신" />
-        </Npc1>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
         </Link>
       </Wrap>
+      <Npc1>
+        <img src={npc1body} alt="여욱이전신" />
+      </Npc1>
     </Container>
   );
 };
