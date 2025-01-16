@@ -10,4 +10,6 @@
 - [] font-awesome
 - [] npm i react-spinners
 
-- elena test
+이게 보이면 반영된겁니다.
+
+엘레나 테스트다!
