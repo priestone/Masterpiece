@@ -201,7 +201,7 @@ const Main = () => {
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
-      <Blur></Blur>
+      {/* <Blur></Blur> */}
 
       <Npc>
         <img src={npc1body} alt="여욱이" />
