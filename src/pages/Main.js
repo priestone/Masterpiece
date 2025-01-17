@@ -8,6 +8,7 @@ import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -158,21 +159,31 @@ const SubChat = styled.div`
   right: -13%;
   color: #827459;
   img {
-    width: 220px;
+    width: 240px;
   }
 
   p {
     position: absolute;
-    top: 28%;
-    left: 16%;
+    top: 30%;
+    left: 18%;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
   }
   h3 {
     position: absolute;
-    top: 56%;
-    left: 16%;
+    top: 60%;
+    left: 18%;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  h4 {
+    position: absolute;
+    top: 76%;
+    left: 22%;
+
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
@@ -188,7 +199,8 @@ const SubChat = styled.div`
     }
 
     p,
-    h3 {
+    h3,
+    h4 {
       font-size: 18px;
     }
   }
@@ -199,7 +211,8 @@ const SubChat = styled.div`
     }
 
     p,
-    h3 {
+    h3,
+    h4 {
       font-size: 14px;
     }
   }
@@ -213,7 +226,8 @@ const SubChat = styled.div`
     }
 
     p,
-    h3 {
+    h3,
+    h4 {
       font-size: 10px;
     }
 
@@ -244,6 +258,10 @@ const SubText = styled.div`
     top: 56%;
   }
 
+  #thirdCusor {
+    top: 76%;
+  }
+
   @media screen and (max-width: 1000px) {
     img {
       width: 30px;
@@ -269,6 +287,12 @@ const Blur = styled.div`
 `;
 
 const Main = () => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleSelect = () => {
+    setIsSelected(true);
+  };
+
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
@@ -289,21 +313,49 @@ const Main = () => {
 
       <Chat>
         <img src={chat1_1} alt="말풍선이미지" />
-        <h2>
-          히야~ 정말 멋진 그림들입니다요! <br />
-          자세히 살펴 보시죠~ 헷헷헷
-        </h2>
+        {!isSelected ? (
+          <h2>
+            히야~ 정말 멋진 그림들입니다요! <br />
+            자세히 살펴 보시죠~ 헷헷헷
+          </h2>
+        ) : (
+          <h2>
+            오! 손님, 결정하셨습니까? <br />
+            어떤 작품을 구매하시겠습니까요?
+          </h2>
+        )}
         <SubChat>
           <img src={chat3} alt="선택말풍선이미지" />
           <img src={npc1head} alt="여욱이" id="npc-head" />
-          <SubText>
-            <img src={cursor} alt="손가락" />
-            <p>좀 더 자세히 볼래!</p>
-          </SubText>
-          <SubText>
-            <img src={cursor} alt="손가락" id="secondCusor" />
-            <h3>선택할래!</h3>
-          </SubText>
+          {/* isSelected 상태에 따라 SubText 내부 문구도 조건부 렌더링 */}
+          {!isSelected ? (
+            <>
+              <SubText>
+                <img src={cursor} alt="손가락" />
+                <p>좀 더 자세히 볼래!</p>
+              </SubText>
+              {/* 이곳에 클릭 이벤트를 연결해서 상태 변경 */}
+              <SubText onClick={handleSelect}>
+                <img src={cursor} alt="손가락" id="secondCusor" />
+                <h3>선택할래!</h3>
+              </SubText>
+            </>
+          ) : (
+            <>
+              <SubText>
+                <img src={cursor} alt="손가락" />
+                <p>왼쪽 그림!</p>
+              </SubText>
+              <SubText>
+                <img src={cursor} alt="손가락" id="secondCusor" />
+                <h3>오른쪽 그림!</h3>
+              </SubText>
+              <SubText>
+                <img src={cursor} alt="손가락" id="thirdCusor" />
+                <h4>다시 볼래!</h4>
+              </SubText>
+            </>
+          )}
         </SubChat>
       </Chat>
     </Container>
