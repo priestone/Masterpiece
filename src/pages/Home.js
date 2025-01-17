@@ -40,6 +40,17 @@ const Wrap = styled.div`
   align-items: center;
   position: absolute;
   bottom: 90px;
+
+  a{
+    z-index: 1;
+    position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  }
+  h3{
+    font-size: 25px;
+  }
 `;
 
 const Chat = styled.div`
@@ -55,12 +66,14 @@ const Chat = styled.div`
     top: 24%;
     left: 54%;
     transform: translateX(-50%);
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 25px;
+    font-family: "Noto Sans KR";
+    font-weight: bold;
     line-height: 50px;
     color: #827459;
   }
 `;
+
 const Npc1 = styled.div`
   width: 15%;
   position: absolute;
