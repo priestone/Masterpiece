@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import homeBg from "./backgroundImg/homeBg.jpg";
+import homeMoBg from "./backgroundImg/homeMoBg.jpg";
 import logo from "../components/img/Logo.svg";
 import { Link } from "react-router-dom";
 import chat1 from "../components/img/chat/chat1_1.png";
@@ -9,7 +10,7 @@ import npc1body from "../components/img/npc/1_body.png";
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background: url(${homeBg}) no-repeat center center;
+  background: url(${homeBg}) no-repeat center;
   background-size: cover;
   display: flex;
   justify-content: space-between;
@@ -22,6 +23,11 @@ const Container = styled.div`
     font-weight: bold;
     color: white;
   }
+
+  @media screen and (max-width: 440px) {
+    background: url(${homeMoBg})  no-repeat cover / center;
+    /* background-size: cover; */
+  }
 `;
 
 const Logo = styled.div`
@@ -29,6 +35,24 @@ const Logo = styled.div`
     width: 800px;
     height: auto;
     margin: -20px auto;
+  }
+
+  @media screen and (max-width: 1400px) {
+    img{
+      width: 700px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    img{
+      width:600px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+   img{
+    width:300px;
+   }
   }
 `;
 
@@ -59,6 +83,24 @@ const Wrap = styled.div`
     bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  @media screen and (max-width: 1400px) {
+    h3{
+      font-size: 23px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    h3{
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+   h3{
+    font-size: 25px;
+   }
   }
 `;
 
