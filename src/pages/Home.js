@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  /* overflow: hidden; */
+  overflow-x: hidden;
 
   h3 {
     font-size: clamp(20px, 4vw, 35px);
@@ -57,7 +57,7 @@ const Chat = styled.div`
   width: 600px;
   position: absolute;
   bottom: 10%;
-  left: 52%;
+  left: 50%;
   transform: translateX(-50%);
 
   h2 {
@@ -95,8 +95,7 @@ const Home = () => {
       <Chat>
         <img src={chat1} alt="말풍선이미지" />
         <h2>
-          히야~ 정말 멋진 그림들입니다요! <br />
-          자세히 살펴 보시죠~ 헷헷헷
+          자자! 둘러보시죠~! <br /> 찬~찬히 둘러보셔도 됩니다요!
         </h2>
       </Chat>
         <Link to={"/main"}>
