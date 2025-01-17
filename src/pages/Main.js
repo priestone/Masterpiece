@@ -30,9 +30,9 @@ const Container = styled.div`
 const Npc = styled.div`
   position: absolute;
   bottom: 8%;
-  left: 18%;
+  left: 20%;
   transform: scaleX(-1);
-  width: 140px;
+  width: 120px;
 
   @media screen and (max-width: 1400px) {
     left: 10%;
@@ -80,9 +80,9 @@ const Painting = styled.div`
 `;
 
 const Chat = styled.div`
-  width: 700px;
+  width: 640px;
   position: absolute;
-  bottom: 10%;
+  bottom: 8%;
   left: 52%;
   transform: translateX(-50%);
 
