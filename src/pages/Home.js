@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Logo = styled.div`
   img {
-    width: 850px;
+    width: 800px;
     height: auto;
     margin: -20px auto;
   }
@@ -43,7 +43,7 @@ const Wrap = styled.div`
 `;
 
 const ChatBox = styled.div`
-  width: 45%;
+  width: 40%;
   img {
     width: 100%;
     height: auto;
@@ -52,9 +52,9 @@ const ChatBox = styled.div`
 
   h3 {
     width: 500px;
-    font-size: clamp(18px, 3.5vw, 33px);
+    font-size: clamp(18px, 3vw, 30px);
     position: absolute;
-    top: 20%;
+    top: 18%;
     left: 50%;
     transform: translateX(-50%);
     color: #827459;
