@@ -33,6 +33,16 @@ const Npc = styled.div`
   left: 18%;
   transform: scaleX(-1);
   width: 140px;
+
+  @media screen and (max-width: 1400px) {
+    left: 10%;
+    width: 100px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    left: 5%;
+    width: 80px;
+  }
 `;
 
 const PaintingWrap = styled.div`
@@ -44,6 +54,10 @@ const PaintingWrap = styled.div`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
+
+  @media screen and (max-width: 1000px) {
+    width: 80%;
+  }
 `;
 
 const Painting = styled.div`
@@ -83,6 +97,20 @@ const Chat = styled.div`
     line-height: 50px;
     color: #827459;
   }
+
+  @media screen and (max-width: 1400px) {
+    width: 600px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+
+    h2 {
+      font-size: 20px;
+      left: 60%;
+      line-height: 40px;
+    }
+  }
 `;
 
 const SubChat = styled.div`
@@ -110,6 +138,28 @@ const SubChat = styled.div`
     font-weight: 600;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 1400px) {
+    img {
+      width: 180px;
+    }
+
+    p,
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    img {
+      width: 140px;
+    }
+
+    p,
+    h3 {
+      font-size: 14px;
+    }
+  }
 `;
 
 const SubText = styled.div`
@@ -127,6 +177,12 @@ const SubText = styled.div`
 
   #secondCusor {
     top: 56%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    img {
+      width: 30px;
+    }
   }
 `;
 
