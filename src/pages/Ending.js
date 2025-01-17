@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import npc from "../img/npc/2_body.png";
+import endingBg from "./backgroundImg/endingBg.jpg";
+import endingFloor from "./backgroundImg/endingFloor.png";
+import paintframe from "../components/img/paintframe.png";
+import chat2_2 from "../components/img/chat/chat1_1.png";
+import body from "../components/img/npc/2_body.png";
+
 
 const Container = styled.div``;
 const Imgwrap = styled.div``;
@@ -11,11 +16,13 @@ const Ending = () => {
   return (
     <Container>
       <Imgwrap>
-        <img src={paintFrame} alt="frame" />
+
+        <img src={paintframe} alt="frame" />
       </Imgwrap>
       <NpcWrap>
-        <img src={npc} alt="부엉이" />
-        <img src="" alt="L말풍선" />
+        <img src={body} alt="부엉이" />
+        <img src={chat2_2} alt="L말풍선" />
+
         <img src="" alt="S말풍선" />
       </NpcWrap>
       <ButtonWrap>
