@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
+import endingBg from "./backgroundImg/endingBg.jpg";
 import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";

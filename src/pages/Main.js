@@ -158,34 +158,34 @@ const SubChat = styled.div`
   top: -8%;
   right: -13%;
   color: #827459;
+
+  display: flex;
+  flex-direction: column;
+  width: 180px;
   img {
+    position: absolute;
+    top: 0%;
+    left: 0%;
     width: 240px;
   }
 
   p {
-    position: absolute;
-    top: 30%;
-    left: 18%;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 10;
   }
   h3 {
-    position: absolute;
-    top: 60%;
-    left: 18%;
     font-size: 20px;
     font-weight: bold;
+    z-index: 10;
     cursor: pointer;
   }
 
   h4 {
-    position: absolute;
-    top: 76%;
-    left: 22%;
-
     font-size: 20px;
     font-weight: bold;
+    z-index: 10;
     cursor: pointer;
   }
 
@@ -242,11 +242,16 @@ const SubChat = styled.div`
 `;
 
 const SubText = styled.div`
+  display: flex;
+  width: 200px;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
   img {
     width: 40px;
-    position: absolute;
+    /* position: absolute;
     top: 26%;
-    left: -8%;
+    left: -8%; */
     display: none;
   }
 
@@ -255,11 +260,11 @@ const SubText = styled.div`
   }
 
   #secondCusor {
-    top: 56%;
+    /* top: 56%; */
   }
 
   #thirdCusor {
-    top: 76%;
+    /* top: 76%; */
   }
 
   @media screen and (max-width: 1000px) {
