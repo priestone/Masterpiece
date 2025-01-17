@@ -40,10 +40,6 @@ const Npc = styled.div`
   transform: scaleX(-1);
   width: 120px;
 
-  img {
-    display: none;
-  }
-
   @media screen and (max-width: 1400px) {
     left: 10%;
     width: 100px;
@@ -209,6 +205,9 @@ const SubChat = styled.div`
   }
 
   @media screen and (max-width: 440px) {
+    top: -40%;
+    right: 2%;
+
     img {
       width: 100px;
     }
@@ -222,8 +221,8 @@ const SubChat = styled.div`
       display: block;
       width: 80px;
       position: absolute;
-      bottom: -57px;
-      right: 30%;
+      bottom: -90px;
+      right: -16%;
     }
   }
 `;
