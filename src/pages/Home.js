@@ -100,6 +100,7 @@ const Wrap = styled.div`
 
   @media screen and (max-width: 440px) {
    h3{
+    width: 210px;
     font-size: 18px;
     bottom: -80px;
    }
@@ -113,6 +114,10 @@ const Chat = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 101;
+
+  #npc-head {
+      display: none;
+    }
 
   h2 {
     width: 400px;
@@ -129,7 +134,7 @@ const Chat = styled.div`
   }
 
   @media screen and (max-width: 440px) {
-    width: 360px;
+    width: 330px;
     position: absolute;
     bottom: 30%;
     left: 50%;
@@ -145,6 +150,14 @@ const Chat = styled.div`
       left: 50%;
       line-height: 24px;
     }
+
+    #npc-head {
+      display: block;
+      width: 135px;
+      position: absolute;
+      bottom: 50px;
+      right: -20px;
+    }
   }
 `;
 
@@ -159,9 +172,7 @@ const Npc1 = styled.div`
     height: auto;
   }
 
-  #npc-head {
-      display: none;
-    }
+  
 
   @media screen and (max-width: 1400px) {
     width: 16%;
@@ -214,6 +225,7 @@ const Home = () => {
               </React.Fragment>
             ))}
           </h2>
+        <img src={npc1head} alt="여욱이전신" id="npc-head" />
         </Chat>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
@@ -222,7 +234,6 @@ const Home = () => {
 
       <Npc1>
         <img src={npc1body} alt="여욱이전신" id="npc-body" />
-        <img src={npc1head} alt="여욱이전신" id="npc-head" />
       </Npc1>
     </Container>
   );
