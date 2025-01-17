@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import homeBg from "./backgroundImg/homeBg.jpg";
 import logo from "../components/img/Logo.svg";
@@ -41,15 +42,23 @@ const Wrap = styled.div`
   position: absolute;
   bottom: 90px;
 
-  a{
+  a {
+    width: 100%;
+    height: 100vh;
     z-index: 1;
     position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
   }
-  h3{
+
+  h3 {
     font-size: 25px;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 
@@ -59,6 +68,7 @@ const Chat = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 101;
 
   h2 {
     width: 400px;
@@ -71,6 +81,7 @@ const Chat = styled.div`
     font-weight: bold;
     line-height: 50px;
     color: #827459;
+    cursor: pointer;
   }
 `;
 
@@ -79,30 +90,56 @@ const Npc1 = styled.div`
   position: absolute;
   bottom: 5%;
   right: 8%;
+  z-index: 999;
   img {
     width: 100%;
     height: auto;
   }
+
+  @media screen and (max-width: 1400px) {
+    width: 16%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 18%;
+  }
 `;
 
 const Home = () => {
+  const dialogues = [
+    "자자! 둘러보시죠~! / 찬~찬히 둘러보셔도 됩니다요!",
+    "앗! 아이고 아이고~  / 반갑습니다, 반갑습니다~!!",
+    "헷헷헷, 훌륭한 미술품들을 / 어디 한번 보고 가시렵니까?",
+  ];
+
+  const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
+
+  const handleChatClick = () => {
+    setCurrentDialogueIndex((prevIndex) => (prevIndex + 1) % dialogues.length);
+  };
+
   return (
     <Container>
       <Logo>
         <img src={logo} alt="로고" />
       </Logo>
       <Wrap>
-      <Chat>
-        <img src={chat1} alt="말풍선이미지" />
-        <h2>
-          자자! 둘러보시죠~! <br /> 찬~찬히 둘러보셔도 됩니다요!
-        </h2>
-      </Chat>
+        <Chat>
+          <img src={chat1} alt="말풍선이미지" />
+          <h2 onClick={handleChatClick}>
+            {dialogues[currentDialogueIndex].split(" / ").map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </h2>
+        </Chat>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
         </Link>
       </Wrap>
-      
+
       <Npc1>
         <img src={npc1body} alt="여욱이전신" />
       </Npc1>
@@ -111,3 +148,4 @@ const Home = () => {
 };
 
 export default Home;
+
