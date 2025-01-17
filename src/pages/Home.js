@@ -6,6 +6,7 @@ import logo from "../components/img/Logo.svg";
 import { Link } from "react-router-dom";
 import chat1 from "../components/img/chat/chat1_1.png";
 import npc1body from "../components/img/npc/1_body.png";
+import npc1head from "../components/img/npc/1_head.png";
 
 const Container = styled.div`
   width: 100%;
@@ -25,8 +26,7 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 440px) {
-    background: url(${homeMoBg})  no-repeat cover / center;
-    /* background-size: cover; */
+    background: url(${homeMoBg})
   }
 `;
 
@@ -51,7 +51,8 @@ const Logo = styled.div`
 
   @media screen and (max-width: 440px) {
    img{
-    width:300px;
+    margin: 30px auto;
+    width: 416px;
    }
   }
 `;
@@ -64,7 +65,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  bottom: 90px;
+  bottom: 150px;
 
   a {
     width: 100%;
@@ -99,7 +100,8 @@ const Wrap = styled.div`
 
   @media screen and (max-width: 440px) {
    h3{
-    font-size: 25px;
+    font-size: 18px;
+    bottom: -80px;
    }
   }
 `;
@@ -125,6 +127,25 @@ const Chat = styled.div`
     color: #827459;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 440px) {
+    width: 360px;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    h2 {
+      position: absolute;
+    top: 28%;
+    left: 54%;
+    transform: translateX(-50%);
+      width: 200px;
+      font-size: 15px;
+      left: 50%;
+      line-height: 24px;
+    }
+  }
 `;
 
 const Npc1 = styled.div`
@@ -138,6 +159,10 @@ const Npc1 = styled.div`
     height: auto;
   }
 
+  #npc-head {
+      display: none;
+    }
+
   @media screen and (max-width: 1400px) {
     width: 16%;
   }
@@ -145,6 +170,19 @@ const Npc1 = styled.div`
   @media screen and (max-width: 1000px) {
     width: 18%;
   }
+  @media screen and (max-width: 440px) {
+    #npc-body {
+      display: none;
+    }
+    #npc-head {
+      display: block;
+      width: 135px;
+      position: absolute;
+      bottom: 160px;
+      right: -20px;
+    }
+  }
+  
 `;
 
 const Home = () => {
@@ -183,7 +221,8 @@ const Home = () => {
       </Wrap>
 
       <Npc1>
-        <img src={npc1body} alt="여욱이전신" />
+        <img src={npc1body} alt="여욱이전신" id="npc-body" />
+        <img src={npc1head} alt="여욱이전신" id="npc-head" />
       </Npc1>
     </Container>
   );
