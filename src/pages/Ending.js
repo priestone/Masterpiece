@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import npc from "../img/npc/2_body.png";
 
 const Container = styled.div``;
 const Imgwrap = styled.div``;
@@ -13,7 +14,7 @@ const Ending = () => {
         <img src={paintFrame} alt="frame" />
       </Imgwrap>
       <NpcWrap>
-        <img src="" alt="부엉이" />
+        <img src={npc} alt="부엉이" />
         <img src="" alt="L말풍선" />
         <img src="" alt="S말풍선" />
       </NpcWrap>
@@ -27,3 +28,4 @@ const Ending = () => {
 };
 
 export default Ending;
+npc;

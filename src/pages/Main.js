@@ -93,7 +93,7 @@ const Chat = styled.div`
     left: 52%;
     transform: translateX(-50%);
     font-size: 26px;
-    font-weight: 600;
+    font-weight: bold;
     line-height: 50px;
     color: #827459;
   }
@@ -127,7 +127,7 @@ const SubChat = styled.div`
     top: 28%;
     left: 16%;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
   }
   h3 {
@@ -135,7 +135,7 @@ const SubChat = styled.div`
     top: 56%;
     left: 16%;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
   }
 
@@ -186,10 +186,22 @@ const SubText = styled.div`
   }
 `;
 
+const Blur = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  filter: blur(1px);
+`;
+
 const Main = () => {
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
+      <Blur></Blur>
 
       <Npc>
         <img src={npc1body} alt="여욱이" />
