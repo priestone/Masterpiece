@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
+import endingBg from "./backgroundImg/endingBg.jpg";
 import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";
@@ -34,6 +35,7 @@ const Npc = styled.div`
 
 const PaintingWrap = styled.div`
   width: 100%;
+  max-width: 1920px;
   display: flex;
   justify-content: space-around;
 `;
@@ -103,6 +105,18 @@ const SubChat = styled.div`
     font-weight: bold;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 1000px) {
+    img {
+      width: 180px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
 `;
 
 const SubText = styled.div`
@@ -138,7 +152,11 @@ const ButtonWrap = styled.div`
   }
 
   @media screen and (max-width: 1000px) {
-    width: 240px;
+    width: 110px;
+    flex-direction: column;
+    gap: 50px;
+    right: 5%;
+    bottom: 9%;
   }
 `;
 const Button = styled.button`
@@ -160,6 +178,7 @@ const Button = styled.button`
     width: 110px;
     height: 45px;
     font-size: 20px;
+    border-radius: 10px;
   }
 `;
 
