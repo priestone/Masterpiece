@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Logo = styled.div`
   img {
-    width: 850px;
+    width: 800px;
     height: auto;
     margin: -20px auto;
   }
@@ -42,23 +42,23 @@ const Wrap = styled.div`
   bottom: 90px;
 `;
 
-const ChatBox = styled.div`
-  width: 45%;
-  img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 50px;
-  }
+const Chat = styled.div`
+  width: 600px;
+  position: absolute;
+  bottom: 10%;
+  left: 52%;
+  transform: translateX(-50%);
 
-  h3 {
-    width: 500px;
-    font-size: clamp(18px, 3.5vw, 33px);
+  h2 {
+    width: 400px;
     position: absolute;
-    top: 20%;
-    left: 50%;
+    top: 24%;
+    left: 54%;
     transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 50px;
     color: #827459;
-    line-height: 60px;
   }
 `;
 const Npc1 = styled.div`
@@ -79,16 +79,18 @@ const Home = () => {
         <img src={logo} alt="로고" />
       </Logo>
       <Wrap>
-        <ChatBox>
-          <h3>
-            자자! 둘러보시죠~! <br /> 찬~찬히 둘러보셔도 됩니다요!
-          </h3>
-          <img src={chat1} alt="말풍선1_1" />
-        </ChatBox>
+      <Chat>
+        <img src={chat1} alt="말풍선이미지" />
+        <h2>
+          히야~ 정말 멋진 그림들입니다요! <br />
+          자세히 살펴 보시죠~ 헷헷헷
+        </h2>
+      </Chat>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
         </Link>
       </Wrap>
+      
       <Npc1>
         <img src={npc1body} alt="여욱이전신" />
       </Npc1>
