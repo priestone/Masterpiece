@@ -11,8 +11,6 @@ const Container = styled.div`
   height: 100vh;
   background: url(${endingBg}) no-repeat center center;
   background-position: cover;
-  display: flex;
-  flex-direction: column;
   padding-top: 50px;
   position: relative;
 `;
@@ -23,6 +21,15 @@ const Npc = styled.div`
   bottom: 5%;
   left: 5%;
   z-index: 10;
+  @media screen and (max-width: 1400px) {
+    left: 6%;
+    width: 150px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    left: 5%;
+    width: 120px;
+  }
 `;
 
 const PaintingWrap = styled.div`
@@ -56,6 +63,18 @@ const Chat = styled.div`
     font-weight: bold;
     line-height: 50px;
     color: #827459;
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 600px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+
+    h2 {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -113,6 +132,14 @@ const ButtonWrap = styled.div`
     color: #ffe000;
     background-color: #00a47b;
   }
+
+  @media screen and (max-width: 1400px) {
+    width: 300px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 240px;
+  }
 `;
 const Button = styled.button`
   all: unset;
@@ -122,6 +149,18 @@ const Button = styled.button`
   border-radius: 20px;
   font-size: 24px;
   font-weight: 700;
+
+  @media screen and (max-width: 1400px) {
+    width: 140px;
+    height: 65px;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 110px;
+    height: 45px;
+    font-size: 20px;
+  }
 `;
 
 const Ending = () => {
