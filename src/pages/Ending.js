@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import endingBg from "./backgroundImg/endingBg.jpg";
 import endingFloor from "./backgroundImg/endingFloor.png";
 import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";
 import body from "../components/img/npc/2_body.png";
 import cursor from "../components/img/cursor.png";
+
 
 const Container = styled.div`
   width: 100%;
@@ -124,6 +124,7 @@ const Button = styled.button`
   font-size: 24px;
   font-weight: 700;
 `;
+
 
 const Ending = () => {
   return (
