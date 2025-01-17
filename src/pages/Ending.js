@@ -5,7 +5,6 @@ import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat1_1.png";
 import body from "../components/img/npc/2_body.png";
 
-
 const Container = styled.div``;
 const Imgwrap = styled.div``;
 const NpcWrap = styled.div``;
@@ -16,7 +15,6 @@ const Ending = () => {
   return (
     <Container>
       <Imgwrap>
-
         <img src={paintframe} alt="frame" />
       </Imgwrap>
       <NpcWrap>
@@ -35,4 +33,3 @@ const Ending = () => {
 };
 
 export default Ending;
-npc;

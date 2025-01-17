@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import mainBg from "./backgroundImg/mainBg.jpg";
+import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
 import cursor from "../components/img/cursor.png";
 import npc1body from "../components/img/npc/1_body.png";
+import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 
@@ -25,6 +27,10 @@ const Container = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 440px) {
+    background: url(${mainMoBg});
+  }
 `;
 
 const Npc = styled.div`
@@ -34,6 +40,10 @@ const Npc = styled.div`
   transform: scaleX(-1);
   width: 120px;
 
+  img {
+    display: none;
+  }
+
   @media screen and (max-width: 1400px) {
     left: 10%;
     width: 100px;
@@ -42,6 +52,12 @@ const Npc = styled.div`
   @media screen and (max-width: 1000px) {
     left: 5%;
     width: 80px;
+  }
+
+  @media screen and (max-width: 440px) {
+    #npc-body {
+      display: none;
+    }
   }
 `;
 
@@ -57,6 +73,11 @@ const PaintingWrap = styled.div`
 
   @media screen and (max-width: 1000px) {
     width: 80%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 90%;
+    top: 24%;
   }
 `;
 
@@ -75,6 +96,15 @@ const Painting = styled.div`
 
     #frame {
       height: 300px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 150px;
+    height: 150px;
+
+    #frame {
+      height: 150px;
     }
   }
 `;
@@ -111,6 +141,19 @@ const Chat = styled.div`
       line-height: 40px;
     }
   }
+
+  @media screen and (max-width: 440px) {
+    width: 340px;
+    bottom: 30%;
+    left: 50%;
+
+    h2 {
+      width: 200px;
+      font-size: 14px;
+      left: 50%;
+      line-height: 24px;
+    }
+  }
 `;
 
 const SubChat = styled.div`
@@ -139,6 +182,10 @@ const SubChat = styled.div`
     cursor: pointer;
   }
 
+  #npc-head {
+    display: none;
+  }
+
   @media screen and (max-width: 1400px) {
     img {
       width: 180px;
@@ -158,6 +205,25 @@ const SubChat = styled.div`
     p,
     h3 {
       font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    img {
+      width: 100px;
+    }
+
+    p,
+    h3 {
+      font-size: 10px;
+    }
+
+    #npc-head {
+      display: block;
+      width: 80px;
+      position: absolute;
+      bottom: -57px;
+      right: 30%;
     }
   }
 `;
@@ -184,6 +250,12 @@ const SubText = styled.div`
       width: 30px;
     }
   }
+
+  @media screen and (max-width: 440px) {
+    img {
+      width: 20px;
+    }
+  }
 `;
 
 const Blur = styled.div`
@@ -204,7 +276,7 @@ const Main = () => {
       {/* <Blur></Blur> */}
 
       <Npc>
-        <img src={npc1body} alt="여욱이" />
+        <img src={npc1body} alt="여욱이" id="npc-body" />
       </Npc>
 
       <PaintingWrap>
@@ -224,6 +296,7 @@ const Main = () => {
         </h2>
         <SubChat>
           <img src={chat3} alt="선택말풍선이미지" />
+          <img src={npc1head} alt="여욱이" id="npc-head" />
           <SubText>
             <img src={cursor} alt="손가락" />
             <p>좀 더 자세히 볼래!</p>
