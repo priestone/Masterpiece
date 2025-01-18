@@ -2,7 +2,6 @@ import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
 import endingBg from "./backgroundImg/endingBg.jpg";
 import endingMoBg from "./backgroundImg/endingMoBg.jpg";
-import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";
 import body from "../components/img/npc/2_body.png";
@@ -261,18 +260,6 @@ const Ending = () => {
         <img className="body" src={body} alt="부엉이" />
         <img className="head" src={head} alt="부엉이머리" />
       </Npc>
-
-      {/* <PaintingWrap>
-        <Painting>
-          <img src={paintframe} alt="액자사진" id="frame" />
-        </Painting>
-        <Painting>
-          <img src={paintframe} alt="액자사진" id="frame" />
-        </Painting>
-        <Painting>
-          <img src={paintframe} alt="액자사진" id="frame" />
-        </Painting>
-      </PaintingWrap> */}
 
       <PaintingSlider />
 
