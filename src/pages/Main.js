@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import mainBg from "./backgroundImg/mainBg.jpg";
+import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
 import cursor from "../components/img/cursor.png";
+import npc1body from "../components/img/npc/1_body.png";
+import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -24,6 +28,34 @@ const Container = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 440px) {
+    background: url(${mainMoBg});
+  }
+`;
+
+const Npc = styled.div`
+  position: absolute;
+  bottom: 8%;
+  left: 20%;
+  transform: scaleX(-1);
+  width: 120px;
+
+  @media screen and (max-width: 1400px) {
+    left: 10%;
+    width: 100px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    left: 5%;
+    width: 80px;
+  }
+
+  @media screen and (max-width: 440px) {
+    #npc-body {
+      display: none;
+    }
+  }
 `;
 
 const PaintingWrap = styled.div`
@@ -35,6 +67,15 @@ const PaintingWrap = styled.div`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
+
+  @media screen and (max-width: 1000px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 90%;
+    top: 24%;
+  }
 `;
 
 const Painting = styled.div`
@@ -43,14 +84,32 @@ const Painting = styled.div`
   background-color: salmon;
 
   #frame {
-    height: 400px;
+    height: 420px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 300px;
+    height: 300px;
+
+    #frame {
+      height: 320px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 150px;
+    height: 150px;
+
+    #frame {
+      height: 170px;
+    }
   }
 `;
 
 const Chat = styled.div`
-  width: 700px;
+  width: 640px;
   position: absolute;
-  bottom: 10%;
+  bottom: 8%;
   left: 52%;
   transform: translateX(-50%);
 
@@ -58,12 +117,39 @@ const Chat = styled.div`
     width: 400px;
     position: absolute;
     top: 24%;
-    left: 54%;
+    left: 52%;
     transform: translateX(-50%);
     font-size: 26px;
-    font-weight: 600;
+    font-weight: bold;
     line-height: 50px;
     color: #827459;
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 600px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+
+    h2 {
+      font-size: 20px;
+      left: 60%;
+      line-height: 40px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 340px;
+    bottom: 30%;
+    left: 50%;
+
+    h2 {
+      width: 200px;
+      font-size: 14px;
+      left: 50%;
+      line-height: 24px;
+    }
   }
 `;
 
@@ -72,34 +158,119 @@ const SubChat = styled.div`
   top: -8%;
   right: -13%;
   color: #827459;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 240px;
+  height: 170px;
+
   img {
-    width: 220px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 240px;
   }
 
   p {
-    position: absolute;
-    top: 28%;
-    left: 16%;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
+    z-index: 10;
+    margin-left: 50px;
   }
   h3 {
-    position: absolute;
-    top: 56%;
-    left: 16%;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    margin-left: 50px;
     cursor: pointer;
+  }
+
+  h4 {
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    margin-left: 50px;
+    cursor: pointer;
+  }
+
+  #npc-head {
+    display: none;
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 180px;
+    height: 128px;
+    gap: 10px;
+
+    img {
+      width: 180px;
+    }
+
+    p,
+    h3,
+    h4 {
+      margin-left: 40px;
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 140px;
+    height: 99px;
+    gap: 2px;
+
+    img {
+      width: 140px;
+    }
+
+    p,
+    h3,
+    h4 {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    top: -75%;
+    right: 0%;
+
+    img {
+      width: 150px;
+    }
+
+    p,
+    h3,
+    h4 {
+      font-size: 14px;
+    }
+
+    #npc-head {
+      display: block;
+      width: 100px;
+      position: absolute;
+      bottom: -100px;
+      right: -10%;
+      top: auto;
+      left: auto;
+    }
   }
 `;
 
 const SubText = styled.div`
+  display: flex;
+  width: 240px;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
   img {
     width: 40px;
     position: absolute;
-    top: 26%;
-    left: -8%;
+    top: 7%;
+    left: 0%;
     display: none;
   }
 
@@ -108,14 +279,66 @@ const SubText = styled.div`
   }
 
   #secondCusor {
-    top: 56%;
+    /* top: 56%; */
+  }
+
+  #thirdCusor {
+    /* top: 76%; */
+  }
+
+  @media screen and (max-width: 1400px) {
+    img {
+      left: -6%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    img {
+      width: 30px;
+      left: 0%;
+      top: 12%;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    img {
+      width: 20px;
+      left: 7%;
+      top: 30%;
+    }
   }
 `;
 
+const Blur = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  filter: blur(1px);
+`;
+
 const Main = () => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleSelect = () => {
+    setIsSelected(true);
+  };
+
+  const handleBack = () => {
+    setIsSelected(false);
+  };
+
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
+      {/* <Blur></Blur> */}
+
+      <Npc>
+        <img src={npc1body} alt="여욱이" id="npc-body" />
+      </Npc>
 
       <PaintingWrap>
         <Painting>
@@ -128,20 +351,49 @@ const Main = () => {
 
       <Chat>
         <img src={chat1_1} alt="말풍선이미지" />
-        <h2>
-          히야~ 정말 멋진 그림들입니다요! <br />
-          자세히 살펴 보시죠~ 헷헷헷
-        </h2>
+        {!isSelected ? (
+          <h2>
+            히야~ 정말 멋진 그림들입니다요! <br />
+            자세히 살펴 보시죠~ 헷헷헷
+          </h2>
+        ) : (
+          <h2>
+            오! 손님, 결정하셨습니까? <br />
+            어떤 작품을 구매하시겠습니까요?
+          </h2>
+        )}
         <SubChat>
           <img src={chat3} alt="선택말풍선이미지" />
-          <SubText>
-            <img src={cursor} alt="손가락" />
-            <p>좀 더 자세히 볼래!</p>
-          </SubText>
-          <SubText>
-            <img src={cursor} alt="손가락" id="secondCusor" />
-            <h3>선택할래!</h3>
-          </SubText>
+          <img src={npc1head} alt="여욱이" id="npc-head" />
+          {/* isSelected 상태에 따라 SubText 내부 문구도 조건부 렌더링 */}
+          {!isSelected ? (
+            <>
+              <SubText>
+                <img src={cursor} alt="손가락" />
+                <p>자세히 볼래!</p>
+              </SubText>
+              {/* 이곳에 클릭 이벤트를 연결해서 상태 변경 */}
+              <SubText onClick={handleSelect}>
+                <img src={cursor} alt="손가락" id="secondCusor" />
+                <h3>선택할래!</h3>
+              </SubText>
+            </>
+          ) : (
+            <>
+              <SubText>
+                <img src={cursor} alt="손가락" />
+                <p>왼쪽 그림!</p>
+              </SubText>
+              <SubText>
+                <img src={cursor} alt="손가락" id="secondCusor" />
+                <h3>오른쪽 그림!</h3>
+              </SubText>
+              <SubText onClick={handleBack}>
+                <img src={cursor} alt="손가락" id="thirdCusor" />
+                <h4>다시 볼래!</h4>
+              </SubText>
+            </>
+          )}
         </SubChat>
       </Chat>
     </Container>
