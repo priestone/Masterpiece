@@ -3,7 +3,7 @@ import styled from "styled-components";
 import emotion1 from "../components/img/emotion/emotion_1.png";
 import emotion2 from "../components/img/emotion/emotion_2.png";
 import emotion3 from "../components/img/emotion/emotion_3.png";
-import chat1 from "../components/img/chat/chat1_1.png";
+import chat1 from "../components/img/chat/chat1_2.png";
 
 const Container = styled.div`
   width: 100%;
