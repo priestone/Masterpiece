@@ -2,7 +2,7 @@ import styled from "styled-components";
 import homeBg from "./backgroundImg/homeBg.jpg";
 import logo from "../components/img/Logo.svg";
 import { Link } from "react-router-dom";
-import chat1 from "../components/img/chat/chat1_1.png";
+import chat1 from "../components/img/chat/chat1_2.png";
 import npc1body from "../components/img/npc/1_body.png";
 
 const Container = styled.div`
@@ -83,7 +83,7 @@ const Home = () => {
           <h3>
             자자! 둘러보시죠~! <br /> 찬~찬히 둘러보셔도 됩니다요!
           </h3>
-          <img src={chat1} alt="말풍선1_1" />
+          <img src={chat1} alt="말풍선1_2" />
         </ChatBox>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
