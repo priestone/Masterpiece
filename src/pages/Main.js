@@ -84,7 +84,7 @@ const Painting = styled.div`
   background-color: salmon;
 
   #frame {
-    height: 400px;
+    height: 420px;
   }
 
   @media screen and (max-width: 1400px) {
@@ -92,7 +92,7 @@ const Painting = styled.div`
     height: 300px;
 
     #frame {
-      height: 300px;
+      height: 320px;
     }
   }
 
@@ -101,7 +101,7 @@ const Painting = styled.div`
     height: 150px;
 
     #frame {
-      height: 150px;
+      height: 170px;
     }
   }
 `;
@@ -158,10 +158,13 @@ const SubChat = styled.div`
   top: -8%;
   right: -13%;
   color: #827459;
-
   display: flex;
   flex-direction: column;
-  width: 180px;
+  justify-content: center;
+  gap: 20px;
+  width: 240px;
+  height: 170px;
+
   img {
     position: absolute;
     top: 0%;
@@ -170,22 +173,25 @@ const SubChat = styled.div`
   }
 
   p {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     z-index: 10;
+    margin-left: 50px;
   }
   h3 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     z-index: 10;
+    margin-left: 50px;
     cursor: pointer;
   }
 
   h4 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     z-index: 10;
+    margin-left: 50px;
     cursor: pointer;
   }
 
@@ -194,6 +200,10 @@ const SubChat = styled.div`
   }
 
   @media screen and (max-width: 1400px) {
+    width: 180px;
+    height: 128px;
+    gap: 10px;
+
     img {
       width: 180px;
     }
@@ -201,11 +211,16 @@ const SubChat = styled.div`
     p,
     h3,
     h4 {
+      margin-left: 40px;
       font-size: 18px;
     }
   }
 
   @media screen and (max-width: 1000px) {
+    width: 140px;
+    height: 99px;
+    gap: 2px;
+
     img {
       width: 140px;
     }
@@ -218,40 +233,44 @@ const SubChat = styled.div`
   }
 
   @media screen and (max-width: 440px) {
-    top: -40%;
-    right: 2%;
+    top: -75%;
+    right: 0%;
 
     img {
-      width: 100px;
+      width: 150px;
     }
 
     p,
     h3,
     h4 {
-      font-size: 10px;
+      font-size: 14px;
     }
 
     #npc-head {
       display: block;
-      width: 80px;
+      width: 100px;
       position: absolute;
-      bottom: -90px;
-      right: -16%;
+      bottom: -100px;
+      right: -10%;
+      top: auto;
+      left: auto;
     }
   }
 `;
 
 const SubText = styled.div`
   display: flex;
-  width: 200px;
+  width: 240px;
   height: 30px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
   img {
     width: 40px;
-    /* position: absolute;
-    top: 26%;
-    left: -8%; */
+    position: absolute;
+    top: 7%;
+    left: 0%;
     display: none;
   }
 
@@ -267,15 +286,25 @@ const SubText = styled.div`
     /* top: 76%; */
   }
 
+  @media screen and (max-width: 1400px) {
+    img {
+      left: -6%;
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     img {
       width: 30px;
+      left: 0%;
+      top: 12%;
     }
   }
 
   @media screen and (max-width: 440px) {
     img {
       width: 20px;
+      left: 7%;
+      top: 30%;
     }
   }
 `;
@@ -296,6 +325,10 @@ const Main = () => {
 
   const handleSelect = () => {
     setIsSelected(true);
+  };
+
+  const handleBack = () => {
+    setIsSelected(false);
   };
 
   return (
@@ -337,7 +370,7 @@ const Main = () => {
             <>
               <SubText>
                 <img src={cursor} alt="손가락" />
-                <p>좀 더 자세히 볼래!</p>
+                <p>자세히 볼래!</p>
               </SubText>
               {/* 이곳에 클릭 이벤트를 연결해서 상태 변경 */}
               <SubText onClick={handleSelect}>
@@ -355,7 +388,7 @@ const Main = () => {
                 <img src={cursor} alt="손가락" id="secondCusor" />
                 <h3>오른쪽 그림!</h3>
               </SubText>
-              <SubText>
+              <SubText onClick={handleBack}>
                 <img src={cursor} alt="손가락" id="thirdCusor" />
                 <h4>다시 볼래!</h4>
               </SubText>
