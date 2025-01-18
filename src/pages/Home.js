@@ -4,7 +4,7 @@ import homeBg from "./backgroundImg/homeBg.jpg";
 import homeMoBg from "./backgroundImg/homeMoBg.jpg";
 import logo from "../components/img/Logo.svg";
 import { Link } from "react-router-dom";
-import chat1 from "../components/img/chat/chat1_1.png";
+import chat1 from "../components/img/chat/chat1_2.png";
 import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
 
@@ -26,7 +26,7 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 440px) {
-    background: url(${homeMoBg})
+    background: url(${homeMoBg});
   }
 `;
 
@@ -38,22 +38,22 @@ const Logo = styled.div`
   }
 
   @media screen and (max-width: 1400px) {
-    img{
+    img {
       width: 700px;
     }
   }
 
   @media screen and (max-width: 1000px) {
-    img{
-      width:600px;
+    img {
+      width: 600px;
     }
   }
 
   @media screen and (max-width: 440px) {
-   img{
-    margin: 30px auto;
-    width: 416px;
-   }
+    img {
+      margin: 30px auto;
+      width: 416px;
+    }
   }
 `;
 
@@ -87,23 +87,23 @@ const Wrap = styled.div`
   }
 
   @media screen and (max-width: 1400px) {
-    h3{
+    h3 {
       font-size: 23px;
     }
   }
 
   @media screen and (max-width: 1000px) {
-    h3{
+    h3 {
       font-size: 20px;
     }
   }
 
   @media screen and (max-width: 440px) {
-   h3{
-    width: 210px;
-    font-size: 18px;
-    bottom: -80px;
-   }
+    h3 {
+      width: 210px;
+      font-size: 18px;
+      bottom: -80px;
+    }
   }
 `;
 
@@ -116,8 +116,8 @@ const Chat = styled.div`
   z-index: 101;
 
   #npc-head {
-      display: none;
-    }
+    display: none;
+  }
 
   h2 {
     width: 400px;
@@ -142,9 +142,9 @@ const Chat = styled.div`
 
     h2 {
       position: absolute;
-    top: 28%;
-    left: 54%;
-    transform: translateX(-50%);
+      top: 28%;
+      left: 54%;
+      transform: translateX(-50%);
       width: 200px;
       font-size: 15px;
       left: 50%;
@@ -172,8 +172,6 @@ const Npc1 = styled.div`
     height: auto;
   }
 
-  
-
   @media screen and (max-width: 1400px) {
     width: 16%;
   }
@@ -193,7 +191,6 @@ const Npc1 = styled.div`
       right: -20px;
     }
   }
-  
 `;
 
 const Home = () => {
@@ -225,7 +222,7 @@ const Home = () => {
               </React.Fragment>
             ))}
           </h2>
-        <img src={npc1head} alt="여욱이전신" id="npc-head" />
+          <img src={npc1head} alt="여욱이전신" id="npc-head" />
         </Chat>
         <Link to={"/main"}>
           <h3>화면을 터치해 시작해보세요</h3>
@@ -240,4 +237,3 @@ const Home = () => {
 };
 
 export default Home;
-
