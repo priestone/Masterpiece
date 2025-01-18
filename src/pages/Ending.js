@@ -6,7 +6,9 @@ import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";
 import body from "../components/img/npc/2_body.png";
+import head from "../components/img/npc/2_head.png";
 import cursor from "../components/img/cursor.png";
+import PaintingSlider from "../components/PaintingSlider";
 
 const Container = styled.div`
   width: 100%;
@@ -27,6 +29,14 @@ const Npc = styled.div`
   bottom: 5%;
   left: 5%;
   z-index: 11;
+  .body {
+    display: block;
+  }
+
+  .head {
+    display: none;
+  }
+
   @media screen and (max-width: 1400px) {
     left: 6%;
     width: 150px;
@@ -36,21 +46,33 @@ const Npc = styled.div`
     left: 8%;
     width: 120px;
   }
-`;
 
-const PaintingWrap = styled.div`
-  width: 100%;
-  max-width: 1920px;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const Painting = styled.div`
-  img {
-    width: 300px;
-    height: 300px;
+  @media screen and (max-width: 440px) {
+    .body {
+      display: none;
+    }
+    width: 100px;
+    bottom: 22%;
+    left: 65%;
+    .head {
+      display: block;
+    }
   }
 `;
+
+// const PaintingWrap = styled.div`
+//   width: 100%;
+//   max-width: 1920px;
+//   display: flex;
+//   justify-content: space-around;
+// `;
+
+// const Painting = styled.div`
+//   img {
+//     width: 300px;
+//     height: 300px;
+//   }
+// `;
 
 const Chat = styled.div`
   width: 700px;
@@ -205,7 +227,7 @@ const ButtonWrap = styled.div`
     flex-direction: row;
     justify-content: space-between;
     bottom: 12%;
-    right: 10%;
+    right: 15%;
   }
 `;
 const Button = styled.button`
@@ -236,10 +258,11 @@ const Ending = () => {
   return (
     <Container>
       <Npc>
-        <img src={body} alt="부엉이" />
+        <img className="body" src={body} alt="부엉이" />
+        <img className="head" src={head} alt="부엉이머리" />
       </Npc>
 
-      <PaintingWrap>
+      {/* <PaintingWrap>
         <Painting>
           <img src={paintframe} alt="액자사진" id="frame" />
         </Painting>
@@ -249,7 +272,9 @@ const Ending = () => {
         <Painting>
           <img src={paintframe} alt="액자사진" id="frame" />
         </Painting>
-      </PaintingWrap>
+      </PaintingWrap> */}
+
+      <PaintingSlider />
 
       <Chat>
         <img src={chat2_2} alt="말풍선이미지" />
