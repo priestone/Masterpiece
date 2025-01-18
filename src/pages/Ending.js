@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
 import endingBg from "./backgroundImg/endingBg.jpg";
+import endingMoBg from "./backgroundImg/endingMoBg.jpg";
 import paintframe from "../components/img/paintframe.png";
 import chat2_2 from "../components/img/chat/chat2_2.png";
 import chat3 from "../components/img/chat/chat3.png";
@@ -10,10 +11,14 @@ import cursor from "../components/img/cursor.png";
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background: url(${endingBg}) no-repeat center center;
+  background: url(${endingBg});
   background-position: cover;
   padding-top: 50px;
   position: relative;
+  @media screen and (max-width: 440px) {
+    background: url(${endingMoBg});
+    background-position: cover;
+  }
 `;
 
 const Npc = styled.div`
@@ -21,14 +26,14 @@ const Npc = styled.div`
   position: absolute;
   bottom: 5%;
   left: 5%;
-  z-index: 10;
+  z-index: 11;
   @media screen and (max-width: 1400px) {
     left: 6%;
     width: 150px;
   }
 
   @media screen and (max-width: 1000px) {
-    left: 5%;
+    left: 8%;
     width: 120px;
   }
 `;
@@ -65,17 +70,39 @@ const Chat = styled.div`
     font-weight: bold;
     line-height: 50px;
     color: #827459;
+    span {
+      color: #0fb3cf;
+    }
   }
 
   @media screen and (max-width: 1400px) {
-    width: 600px;
+    width: 550px;
+
+    h2 {
+      font-size: 22px;
+    }
   }
 
   @media screen and (max-width: 1000px) {
-    width: 500px;
+    width: 450px;
+    left: 44%;
 
     h2 {
-      font-size: 20px;
+      font-size: 18px;
+      left: 62%;
+      top: 18%;
+    }
+  }
+  @media screen and (max-width: 440px) {
+    width: 380px;
+    left: 36%;
+    bottom: 25%;
+
+    h2 {
+      font-size: 14px;
+      left: 65%;
+      top: 20%;
+      line-height: 35px;
     }
   }
 `;
@@ -93,6 +120,7 @@ const SubChat = styled.div`
     position: absolute;
     top: 28%;
     left: 16%;
+    z-index: 11;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
@@ -101,6 +129,7 @@ const SubChat = styled.div`
     position: absolute;
     top: 56%;
     left: 16%;
+    z-index: 11;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
@@ -115,6 +144,19 @@ const SubChat = styled.div`
     }
     p {
       font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 440px) {
+    top: -45%;
+    right: -5%;
+    img {
+      width: 140px;
+    }
+    h3 {
+      font-size: 14px;
+    }
+    p {
+      font-size: 14px;
     }
   }
 `;
@@ -154,9 +196,16 @@ const ButtonWrap = styled.div`
   @media screen and (max-width: 1000px) {
     width: 110px;
     flex-direction: column;
-    gap: 50px;
+    gap: 35px;
     right: 5%;
     bottom: 9%;
+  }
+  @media screen and (max-width: 440px) {
+    width: 300px;
+    flex-direction: row;
+    justify-content: space-between;
+    bottom: 12%;
+    right: 10%;
   }
 `;
 const Button = styled.button`
@@ -167,6 +216,7 @@ const Button = styled.button`
   border-radius: 20px;
   font-size: 24px;
   font-weight: 700;
+  cursor: pointer;
 
   @media screen and (max-width: 1400px) {
     width: 140px;
@@ -204,7 +254,8 @@ const Ending = () => {
       <Chat>
         <img src={chat2_2} alt="말풍선이미지" />
         <h2>
-          괜찮으시다면.. 작품에 대해서 <br /> 잠시 설명을 해드릴까요?
+          괜찮으시다면.. <span>작품</span>에 대해서 <br /> 잠시 설명을
+          해드릴까요?
         </h2>
         <SubChat>
           <img src={chat3} alt="선택말풍선이미지" />
