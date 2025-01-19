@@ -2,18 +2,17 @@ import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
 import endingBg from "./backgroundImg/endingBg.jpg";
 import endingMoBg from "./backgroundImg/endingMoBg.jpg";
-import chat2_2 from "../components/img/chat/chat2_2.png";
-import chat3 from "../components/img/chat/chat3.png";
+import chat2_1 from "../components/img/chat/chat2_1.png";
 import body from "../components/img/npc/2_body.png";
 import head from "../components/img/npc/2_head.png";
-import cursor from "../components/img/cursor.png";
 import PaintingSlider from "../components/PaintingSlider";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   background: url(${endingBg});
-  background-position: cover;
+  background-size: cover;
   padding-top: 50px;
   position: relative;
   @media screen and (max-width: 440px) {
@@ -32,10 +31,6 @@ const Npc = styled.div`
     display: block;
   }
 
-  .head {
-    display: none;
-  }
-
   @media screen and (max-width: 1400px) {
     left: 6%;
     width: 150px;
@@ -50,28 +45,8 @@ const Npc = styled.div`
     .body {
       display: none;
     }
-    width: 100px;
-    bottom: 22%;
-    left: 65%;
-    .head {
-      display: block;
-    }
   }
 `;
-
-// const PaintingWrap = styled.div`
-//   width: 100%;
-//   max-width: 1920px;
-//   display: flex;
-//   justify-content: space-around;
-// `;
-
-// const Painting = styled.div`
-//   img {
-//     width: 300px;
-//     height: 300px;
-//   }
-// `;
 
 const Chat = styled.div`
   width: 700px;
@@ -80,6 +55,10 @@ const Chat = styled.div`
   left: 34%;
   z-index: 10;
   transform: translateX(-35%);
+
+  .head {
+    display: none;
+  }
 
   h2 {
     width: 400px;
@@ -115,80 +94,25 @@ const Chat = styled.div`
     }
   }
   @media screen and (max-width: 440px) {
+    position: absolute;
     width: 380px;
     left: 36%;
     bottom: 25%;
 
     h2 {
       font-size: 14px;
-      left: 65%;
+      left: 66%;
       top: 20%;
       line-height: 35px;
     }
-  }
-`;
 
-const SubChat = styled.div`
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  color: #827459;
-  img {
-    width: 220px;
-  }
-
-  p {
-    position: absolute;
-    top: 28%;
-    left: 16%;
-    z-index: 11;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  h3 {
-    position: absolute;
-    top: 56%;
-    left: 16%;
-    z-index: 11;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 1000px) {
-    img {
-      width: 180px;
+    .head {
+      display: block;
+      position: absolute;
+      width: 100px;
+      bottom: -20%;
+      right: 5%;
     }
-    h3 {
-      font-size: 16px;
-    }
-    p {
-      font-size: 16px;
-    }
-  }
-  @media screen and (max-width: 440px) {
-    top: -45%;
-    right: -5%;
-    img {
-      width: 140px;
-    }
-    h3 {
-      font-size: 14px;
-    }
-    p {
-      font-size: 14px;
-    }
-  }
-`;
-
-const SubText = styled.div`
-  img {
-    width: 40px;
-    position: absolute;
-    top: 28%;
-    left: -8%;
-    /* display: none; */
   }
 `;
 
@@ -258,32 +182,25 @@ const Ending = () => {
     <Container>
       <Npc>
         <img className="body" src={body} alt="부엉이" />
-        <img className="head" src={head} alt="부엉이머리" />
       </Npc>
 
       <PaintingSlider />
 
       <Chat>
-        <img src={chat2_2} alt="말풍선이미지" />
+        <img src={chat2_1} alt="말풍선이미지" />
+        <img className="head" src={head} alt="부엉이머리" />
         <h2>
-          괜찮으시다면.. <span>작품</span>에 대해서 <br /> 잠시 설명을
-          해드릴까요?
+          <span>작품</span>을 클릭해보시면 <br />
+          자세한 설명을 보실 수 있답니다!
         </h2>
-        <SubChat>
-          <img src={chat3} alt="선택말풍선이미지" />
-          <SubText>
-            <img src={cursor} alt="손가락" />
-            <p>응 좋아!</p>
-          </SubText>
-          <SubText>
-            <img src={cursor} alt="손가락" id="secondCusor" />
-            <h3>아니 사양할게.</h3>
-          </SubText>
-        </SubChat>
       </Chat>
       <ButtonWrap>
-        <Button className="result">결과보기</Button>
-        <Button className="home">홈으로</Button>
+        <Link to="/main">
+          <Button className="result">다시하기</Button>
+        </Link>
+        <Link to="/">
+          <Button className="home">홈으로</Button>
+        </Link>
       </ButtonWrap>
       <img
         src={endingFloor}
@@ -293,7 +210,6 @@ const Ending = () => {
           position: "absolute",
           bottom: "0",
           left: "0",
-          // zIndex: "-1",
         }}
       />
     </Container>
