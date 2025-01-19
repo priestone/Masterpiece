@@ -68,7 +68,7 @@ const PaintingSlider = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedPainting(null); // 선택 데이터 초기화
+    setSelectedPainting(null);
   };
   return (
     <>
