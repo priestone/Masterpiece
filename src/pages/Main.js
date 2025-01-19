@@ -3,29 +3,16 @@ import mainBg from "./backgroundImg/mainBg.jpg";
 import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
-import npc1body from "../components/img/npc/1_body.png";
 import cursor from "../components/img/cursor.png";
+import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 import closeBtn from "../components/img/downarrow.svg";
-import homeBtn from "../components/img/homeBtn.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const HomeBtn = styled.div`
-  position: fixed;
-  top: 2%;
-  left: 2%;
-  width: 80px;
-  height: 80px;
-  background: url(${homeBtn}) no-repeat center / cover;
-`;
-
-const HomeBtn2 = styled.div`
-  position: fixed;
-  top: 2%;
-  right: 2%;
   width: 100px;
   height: 100px;
   background-color: lightgreen;
@@ -52,7 +39,6 @@ const Container = styled.div`
 
   @media screen and (max-width: 440px) {
     background: url(${mainMoBg});
-    max-height: 956px;
   }
 `;
 
@@ -66,13 +52,11 @@ const Npc = styled.div`
   @media screen and (max-width: 1400px) {
     left: 10%;
     width: 100px;
-    bottom: 15%;
   }
 
   @media screen and (max-width: 1000px) {
     left: 5%;
     width: 80px;
-    bottom: 20%;
   }
 
   @media screen and (max-width: 440px) {
@@ -155,12 +139,10 @@ const Chat = styled.div`
 
   @media screen and (max-width: 1400px) {
     width: 600px;
-    bottom: 15%;
   }
 
   @media screen and (max-width: 1000px) {
     width: 500px;
-    bottom: 20%;
 
     h2 {
       font-size: 20px;
@@ -186,7 +168,7 @@ const Chat = styled.div`
 const SubChat = styled.div`
   position: absolute;
   top: -8%;
-  right: -15%;
+  right: -13%;
   color: #827459;
   display: flex;
   flex-direction: column;
@@ -233,7 +215,6 @@ const SubChat = styled.div`
     width: 180px;
     height: 128px;
     gap: 10px;
-    right: -11%;
 
     img {
       width: 180px;
@@ -454,11 +435,10 @@ const Main = () => {
       {/* <Blur></Blur> */}
 
       <Link to={"/#"}>
-        <HomeBtn></HomeBtn>
+        <HomeBtn>홈 가기</HomeBtn>
       </Link>
-
       <Link to={"/ending"}>
-        <HomeBtn2>엔딩 가기</HomeBtn2>
+        <HomeBtn>엔딩 가기</HomeBtn>
       </Link>
 
       <Npc>
@@ -482,6 +462,7 @@ const Main = () => {
           <img src={chat3} alt="선택말풍선이미지" />
           <img src={npc1head} alt="여욱이" id="npc-head" />
 
+          {/* 단계별 버튼 표시 */}
           {conversationStage === 0 && (
             <>
               <SubText onClick={() => setConversationStage(1)}>
