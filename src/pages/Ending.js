@@ -195,7 +195,9 @@ const Ending = () => {
         </h2>
       </Chat>
       <ButtonWrap>
-        <Button className="result">결과보기</Button>
+        <Link to="/main">
+          <Button className="result">다시하기</Button>
+        </Link>
         <Link to="/">
           <Button className="home">홈으로</Button>
         </Link>
