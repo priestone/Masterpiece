@@ -6,6 +6,9 @@ import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
 import real1 from "../imgs/real/real1.jpg";
+import EndingModal from "./EndingModal";
+import { data } from "../data/Data";
+import { useState } from "react";
 
 const CustomSwiper = styled(Swiper)`
   width: 100%;
@@ -40,37 +43,52 @@ const CustomSwiper = styled(Swiper)`
 `;
 
 const PaintingSlider = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPainting, setSelectedPainting] = useState(null);
+
+  const openModal = (painting) => {
+    setSelectedPainting(painting);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPainting(null); // 선택 데이터 초기화
+  };
   return (
-    <CustomSwiper
-      modules={[Navigation, Pagination]}
-      spaceBetween={60}
-      navigation
-      pagination={{ clickable: true }}
-      loop
-      breakpoints={{
-        1400: { slidesPerView: 3, spaceBetween: 40 },
-        1000: { slidesPerView: 2, spaceBetween: 30 },
-        440: { slidesPerView: 1, spaceBetween: 20 },
-      }}
-      style={{ paddingBottom: "30px" }}
-    >
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_1" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_2" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_3" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_4" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_5" />
-      </SwiperSlide>
-    </CustomSwiper>
+    <>
+      <CustomSwiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={60}
+        navigation
+        pagination={{ clickable: true }}
+        loop
+        breakpoints={{
+          1400: { slidesPerView: 3, spaceBetween: 40 },
+          1000: { slidesPerView: 2, spaceBetween: 30 },
+          440: { slidesPerView: 1, spaceBetween: 20 },
+        }}
+        style={{ paddingBottom: "30px" }}
+      >
+        {data.real.map((painting) => (
+          <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
+            <img
+              src={painting.image || "../components/img/paintframe.png"}
+              alt={painting.title}
+            />
+          </SwiperSlide>
+        ))}
+      </CustomSwiper>
+
+      {/* EndingModal 연결 */}
+      {selectedPainting && (
+        <EndingModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          painting={selectedPainting}
+        />
+      )}
+    </>
   );
 };
-
 export default PaintingSlider;
