@@ -3,9 +3,9 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-// import paintframe from "../components/img/paintframe.png";
+import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
-// import real1 from "../imgs/real/real1.jpg";
+import real1 from "../imgs/real/real1.jpg";
 import EndingModal from "./EndingModal";
 import { data } from "../data/Data";
 import { useState } from "react";
@@ -21,10 +21,25 @@ const CustomSwiper = styled(Swiper)`
     border-radius: 10px;
   }
 
+  .frame {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    z-index: 10;
+  }
+
+  .artwork {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    z-index: 9;
+    object-fit: cover;
+  }
+
   .swiper-slide img {
     width: 400px;
     height: 400px;
-    background-color: lightsalmon;
+    /* background-color: lightsalmon; */
 
     @media screen and (max-width: 440px) {
       width: 300px;
@@ -72,8 +87,10 @@ const PaintingSlider = () => {
       >
         {data.real.map((painting) => (
           <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
+            <img className="frame" src={paintframe} alt="frame" />
             <img
-              src={painting.image || "../components/img/paintframe.png"}
+              className="artwork"
+              src={painting.image || real1}
               alt={painting.title}
             />
           </SwiperSlide>
