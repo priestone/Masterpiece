@@ -5,10 +5,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
+import real1 from "../imgs/real/real1.jpg";
 
 const CustomSwiper = styled(Swiper)`
   width: 100%;
-  height: 500px;
+  height: 480px;
 
   .swiper-slide {
     display: flex;
@@ -20,20 +21,12 @@ const CustomSwiper = styled(Swiper)`
   .swiper-slide img {
     width: 400px;
     height: 400px;
-
-    @media screen and (max-width: 1400px) {
-      width: 300px;
-      height: 300px;
-    }
-    /* @media screen and (max-width: 1000px) {
-      width: 300px;
-      height: 300px;
-    }
+    background-color: lightsalmon;
 
     @media screen and (max-width: 440px) {
       width: 300px;
       height: 300px;
-    } */
+    }
   }
 
   .swiper-button-next,
@@ -51,13 +44,12 @@ const PaintingSlider = () => {
     <CustomSwiper
       modules={[Navigation, Pagination]}
       spaceBetween={60}
-      // slidesPerView={4}
       navigation
       pagination={{ clickable: true }}
       loop
       breakpoints={{
         1400: { slidesPerView: 3, spaceBetween: 40 },
-        1000: { slidesPerView: 3, spaceBetween: 30 },
+        1000: { slidesPerView: 2, spaceBetween: 30 },
         440: { slidesPerView: 1, spaceBetween: 20 },
       }}
       style={{ paddingBottom: "30px" }}
@@ -76,21 +68,6 @@ const PaintingSlider = () => {
       </SwiperSlide>
       <SwiperSlide>
         <img src={paintframe} alt="작품_5" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_6" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_7" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_8" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_9" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={paintframe} alt="작품_10" />
       </SwiperSlide>
     </CustomSwiper>
   );
