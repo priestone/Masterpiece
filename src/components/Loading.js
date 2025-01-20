@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import emotion1 from "../components/img/emotion/emotion_1.png";
 import emotion2 from "../components/img/emotion/emotion_2.png";
 import emotion3 from "../components/img/emotion/emotion_3.png";
 import chat1 from "../components/img/chat/chat1_2.png";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -58,7 +58,7 @@ const Chat = styled.div`
   }
 `;
 
-const Loading = (correctCount) => {
+const Loading = ({ correctCount }) => {
   // const [correctCount, setCorrectCount] = useState(0);
 
   return (
@@ -68,14 +68,16 @@ const Loading = (correctCount) => {
           <Npc>
             <img src={emotion1} alt="여욱이 하" />
           </Npc>
-          <Chat>
-            <img src={chat1} alt="말풍선이미지" />
-            <h2>
-              흑흑, 손님!
-              <br />
-              진품만 쏙쏙 고르셨군요.
-            </h2>
-          </Chat>
+          <Link to={"/ending"}>
+            <Chat>
+              <img src={chat1} alt="말풍선이미지" />
+              <h2>
+                흑흑, 손님!
+                <br />
+                진품만 쏙쏙 고르셨군요.
+              </h2>
+            </Chat>
+          </Link>
         </>
       )}
       {correctCount > 3 && correctCount <= 8 && (
@@ -83,14 +85,16 @@ const Loading = (correctCount) => {
           <Npc>
             <img src={emotion3} alt="여욱이 중" />
           </Npc>
-          <Chat>
-            <img src={chat1} alt="말풍선이미지" />
-            <h2>
-              쳇, 제법 눈썰미가
-              <br />
-              좋으신 것 같습니다요~
-            </h2>
-          </Chat>
+          <Link to={"/ending"}>
+            <Chat>
+              <img src={chat1} alt="말풍선이미지" />
+              <h2>
+                쳇, 제법 눈썰미가
+                <br />
+                좋으신 것 같습니다요~
+              </h2>
+            </Chat>
+          </Link>
         </>
       )}
       {correctCount > 8 && (
@@ -98,14 +102,16 @@ const Loading = (correctCount) => {
           <Npc>
             <img src={emotion2} alt="여욱이 상" />
           </Npc>
-          <Chat>
-            <img src={chat1} alt="말풍선이미지" />
-            <h2>
-              이야~ 오늘도 손님 덕분에
-              <br />
-              기분이 하늘을 찌릅니다요!
-            </h2>
-          </Chat>
+          <Link to={"/ending"}>
+            <Chat>
+              <img src={chat1} alt="말풍선이미지" />
+              <h2>
+                이야~ 오늘도 손님 덕분에
+                <br />
+                기분이 하늘을 찌릅니다요!
+              </h2>
+            </Chat>
+          </Link>
         </>
       )}
     </Container>
