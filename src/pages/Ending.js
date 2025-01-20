@@ -6,7 +6,7 @@ import chat2_1 from "../components/img/chat/chat2_1.png";
 import body from "../components/img/npc/2_body.png";
 import head from "../components/img/npc/2_head.png";
 import PaintingSlider from "../components/PaintingSlider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -178,13 +178,16 @@ const Button = styled.button`
 `;
 
 const Ending = () => {
+  const location = useLocation();
+  const selectedRealImages = location.state?.selectedRealImages || [];
+
   return (
     <Container>
       <Npc>
         <img className="body" src={body} alt="부엉이" />
       </Npc>
 
-      <PaintingSlider />
+      <PaintingSlider paintings={selectedRealImages} />
 
       <Chat>
         <img src={chat2_1} alt="말풍선이미지" />
