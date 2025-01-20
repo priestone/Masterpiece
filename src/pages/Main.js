@@ -13,6 +13,7 @@ import closeBtn from "../components/img/downarrow.svg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import Loading from "../components/Loading";
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -345,7 +346,7 @@ const ModalBackground = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -406,9 +407,16 @@ const CloseButton = styled.button`
 `;
 
 const Main = () => {
-  const [conversationStage, setConversationStage] = useState(0); //대화관련 상태 입니다.
-  const [selectedPainting, setSelectedPainting] = useState(null); //모달(확대) 상태 입니다.
+  /** 1) 라운드/정답/대화 등 상태들 */
+  const [roundCount, setRoundCount] = useState(1); // 1~10까지 문제
+  const [correctCount, setCorrectCount] = useState(0);
+  const [conversationStage, setConversationStage] = useState(0);
+  const [selectedPainting, setSelectedPainting] = useState(null);
 
+  /** 게임이 끝났는지 여부: 끝나면 <Loading>만 표시 */
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  /** 2) 폴더에서 이미지 불러오기 → 초기 state로 복사 */
   const aiContext = require.context("../imgs/ai", false, /\.(png|jpe?g|svg)$/);
   const realContext = require.context(
     "../imgs/real",
@@ -419,36 +427,101 @@ const Main = () => {
   const aiImages = aiContext.keys().map(aiContext);
   const realImages = realContext.keys().map(realContext);
 
+  // unused 배열에 처음에만 복사 (마운트 시 1회)
+  const [aiUnused, setAiUnused] = useState(() => [...aiImages]);
+  const [realUnused, setRealUnused] = useState(() => [...realImages]);
+
+  /** 3) 현재 라운드에서 보여줄 그림 2장 (AI 1, REAL 1) */
   const [paintings, setPaintings] = useState([
-    { id: "left", background: "" },
-    { id: "right", background: "" },
+    { id: "left", background: "", type: "" },
+    { id: "right", background: "", type: "" },
   ]);
 
-  useEffect(() => {
-    const randomAi = getRandomImage(aiImages);
-    const randomReal = getRandomImage(realImages);
-
-    const isAiLeft = Math.random() < 0.5; // 50% 확률
-
-    if (isAiLeft) {
-      setPaintings([
-        { id: "left", background: randomAi },
-        { id: "right", background: randomReal },
-      ]);
-    } else {
-      setPaintings([
-        { id: "left", background: randomReal },
-        { id: "right", background: randomAi },
-      ]);
+  // ------------------------- 게임/문제 출제 로직 -------------------------
+  /** 새 문제(라운드) 불러오기 */
+  function loadNewQuestion() {
+    // 이미 10라운드를 모두 마쳤다면 더 이상 문제 없음.
+    if (roundCount > 10) {
+      endGame();
+      return;
     }
-  }, []);
 
-  function getRandomImage(imageList) {
-    const randomIndex = Math.floor(Math.random() * imageList.length);
-    return imageList[randomIndex];
+    // 더 이상 뽑을 이미지가 없을 때
+    if (aiUnused.length === 0 || realUnused.length === 0) {
+      endGame();
+      return;
+    }
+
+    // AI/REAL 각각 1장씩 랜덤 추출
+    const aiIndex = Math.floor(Math.random() * aiUnused.length);
+    const realIndex = Math.floor(Math.random() * realUnused.length);
+
+    const selectedAi = aiUnused[aiIndex];
+    const selectedReal = realUnused[realIndex];
+
+    // 50% 확률로 왼쪽=AI / 오른쪽=REAL 또는 반대
+    const isAiLeft = Math.random() < 0.5;
+    let newPaintings;
+    if (isAiLeft) {
+      newPaintings = [
+        { id: "left", background: selectedAi, type: "ai" },
+        { id: "right", background: selectedReal, type: "real" },
+      ];
+    } else {
+      newPaintings = [
+        { id: "left", background: selectedReal, type: "real" },
+        { id: "right", background: selectedAi, type: "ai" },
+      ];
+    }
+    setPaintings(newPaintings);
+
+    // 뽑은 2장 모두 unused 배열에서 제거
+    const newAiUnused = [...aiUnused];
+    newAiUnused.splice(aiIndex, 1);
+    const newRealUnused = [...realUnused];
+    newRealUnused.splice(realIndex, 1);
+
+    setAiUnused(newAiUnused);
+    setRealUnused(newRealUnused);
+
+    // 대화/모달 초기화
+    setConversationStage(0);
+    setSelectedPainting(null);
   }
 
-  const getChatText = () => {
+  /** 그림 선택 시 정답 체크 & 다음 문제 */
+  function handleSelect(direction) {
+    const chosen = paintings.find((p) => p.id === direction);
+    if (!chosen) return;
+
+    // 정답 (type === "real")
+    if (chosen.type === "real") {
+      setCorrectCount((prev) => prev + 1);
+      // alert(`정답! 현재 점수: ${correctCount + 1}`);
+    } else {
+      // alert(`오답! 현재 점수: ${correctCount}`);
+    }
+
+    // 만약 이번이 10라운드라면 이 선택을 마지막으로 게임 종료
+    if (roundCount === 10) {
+      // 마지막 정답 체크 후 바로 종료
+      endGame();
+    } else {
+      // 아직 10라운드 미만이면 다음 문제로 진행
+      setRoundCount((prev) => prev + 1);
+      loadNewQuestion();
+    }
+  }
+
+  /** 게임 종료 → <Loading>화면 표시로 전환 */
+  function endGame() {
+    // alert(`게임 종료!\n최종 점수: ${correctCount} / 10`);
+    // 게임 화면 감추고 <Loading>만 표시
+    setIsGameOver(true);
+  }
+
+  // ------------------------- 대화 관련 -------------------------
+  function getChatText() {
     switch (conversationStage) {
       case 0:
         return (
@@ -474,19 +547,47 @@ const Main = () => {
       default:
         return null;
     }
-  };
+  }
 
+  // ------------------------- 첫 문제 로드 -------------------------
+  useEffect(() => {
+    // paintings가 비어있고, roundCount=1 일 때만 첫 문제 로드
+    if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
+      loadNewQuestion();
+    }
+    // eslint-disable-next-line
+  }, [aiUnused, realUnused]);
+
+  // ------------------------- 렌더링 -------------------------
+  // 1) 게임이 끝났다면 <Loading>만 보여줌
+  if (isGameOver) {
+    return <Loading correctCount={correctCount} />;
+  }
+
+  // 2) 게임 진행 중이면 기존 화면 렌더
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
-      {/* <Blur></Blur> */}
+
+      <div
+        style={{
+          position: "fixed",
+          top: "10px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          color: "#fff",
+          fontSize: "20px",
+          fontWeight: "bold",
+        }}
+      >
+        라운드: {roundCount} / 10
+      </div>
 
       <Link to={"/#"}>
-        <HomeBtn>홈 가기</HomeBtn>
+        <HomeBtn />
       </Link>
-
       <Link to={"/ending"}>
-        <EndBtn>엔딩 가기</EndBtn>
+        <EndBtn />
       </Link>
 
       <Npc>
@@ -524,7 +625,6 @@ const Main = () => {
           <img src={chat3} alt="선택말풍선이미지" />
           <img src={npc1head} alt="여욱이" id="npc-head" />
 
-          {/* 단계별 버튼 표시 */}
           {conversationStage === 0 && (
             <>
               <SubText onClick={() => setConversationStage(1)}>
@@ -557,11 +657,11 @@ const Main = () => {
 
           {conversationStage === 2 && (
             <>
-              <SubText>
+              <SubText onClick={() => handleSelect("left")}>
                 <img src={cursor} alt="손가락" />
                 <p>왼쪽 그림!</p>
               </SubText>
-              <SubText>
+              <SubText onClick={() => handleSelect("right")}>
                 <img src={cursor} alt="손가락" />
                 <h3>오른쪽 그림!</h3>
               </SubText>
@@ -593,16 +693,10 @@ const Main = () => {
                         ? paintings[0].background
                         : paintings[1].background
                     })`,
-                    backgroundSize: "cover", // 선택
-                    backgroundPosition: "center", // 선택
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
-                >
-                  {/* {selectedPainting === "left" ? (
-                    <img src={paintframe} alt="왼쪽그림확대" />
-                  ) : (
-                    <img src={paintframe} alt="오른쪽그림확대" />
-                  )} */}
-                </EnlargedPainting>
+                />
               </TransformComponent>
             </TransformWrapper>
           </ModalContainer>

@@ -58,8 +58,8 @@ const Chat = styled.div`
   }
 `;
 
-const Loading = () => {
-  const [correctCount, setCorrectCount] = useState(0);
+const Loading = (correctCount) => {
+  // const [correctCount, setCorrectCount] = useState(0);
 
   return (
     <Container>
