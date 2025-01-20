@@ -25,13 +25,16 @@ const ModalContent = styled.div`
   /* max-height: 90%; */
   padding: 200px;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1400px) {
     padding: 100px;
+  }
+  @media screen and (max-width: 1000px) {
+    padding: 50px;
   }
   @media screen and (max-width: 440px) {
     flex-direction: column;
     /* width: 90%; */
-    padding: 50px;
+    /* padding: 50px; */
   }
 `;
 
@@ -63,6 +66,14 @@ const ImageWrapper = styled.div`
     img {
       width: 450px;
       height: 450px;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    padding-right: 35px;
+
+    img {
+      width: 350px;
+      height: 350px;
     }
   }
 
@@ -105,6 +116,7 @@ const TextWrapper = styled.div`
     font-size: 24px;
     margin-bottom: 10px;
     line-height: 1.5;
+    opacity: 0.7;
   }
 
   @media screen and (max-width: 1400px) {
@@ -125,25 +137,40 @@ const TextWrapper = styled.div`
       line-height: 32px;
     }
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1100px) {
     h2 {
-      font-size: 40px;
-      /* text-align: center; */
+      font-size: 42px;
     }
 
     h3 {
       font-size: 22px;
-      /* text-align: center; */
     }
 
     h4 {
       font-size: 22px;
       margin-bottom: 20px;
-      /* text-align: center; */
     }
 
     p {
-      /* text-align: center; */
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    h2 {
+      font-size: 40px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    h4 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    p {
       font-size: 20px;
       line-height: 28px;
     }
