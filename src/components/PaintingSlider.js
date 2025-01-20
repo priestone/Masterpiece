@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
-import real1 from "../imgs/real/real1.jpg";
+import real1 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
 import { data } from "../data/Data";
 import { useState } from "react";

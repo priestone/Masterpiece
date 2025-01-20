@@ -4,18 +4,32 @@ import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
 import cursor from "../components/img/cursor.png";
+import homeBtn from "../components/img/homeBtn.png";
 import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 import closeBtn from "../components/img/downarrow.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 const HomeBtn = styled.div`
+  position: fixed;
+  top: 10px;
+  left: 10px;
   width: 100px;
   height: 100px;
-  background-color: lightgreen;
+  background: url(${homeBtn}) no-repeat center / cover;
+`;
+
+const EndBtn = styled.div`
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  background: url(${homeBtn}) no-repeat center / cover;
 `;
 
 const Container = styled.div`
@@ -94,6 +108,7 @@ const Painting = styled.div`
   width: 400px;
   height: 400px;
   background-color: salmon;
+  min-width: 400px;
 
   #frame {
     height: 420px;
@@ -102,6 +117,7 @@ const Painting = styled.div`
   @media screen and (max-width: 1400px) {
     width: 300px;
     height: 300px;
+    min-width: 300px;
 
     #frame {
       height: 320px;
@@ -111,6 +127,7 @@ const Painting = styled.div`
   @media screen and (max-width: 440px) {
     width: 150px;
     height: 150px;
+    min-width: 150px;
 
     #frame {
       height: 170px;
@@ -168,7 +185,7 @@ const Chat = styled.div`
 const SubChat = styled.div`
   position: absolute;
   top: -8%;
-  right: -13%;
+  right: -14%;
   color: #827459;
   display: flex;
   flex-direction: column;
@@ -347,9 +364,10 @@ const ModalContainer = styled.div`
 const EnlargedPainting = styled.div`
   width: 500px;
   height: 500px;
-
   text-align: center;
   background-color: salmon;
+  z-index: 11;
+  /* overflow:; */
 
   img {
     width: 500px;
@@ -371,35 +389,64 @@ const EnlargedPainting = styled.div`
 
 const CloseButton = styled.button`
   all: unset;
-  position: fixed;
-  bottom: 8%;
+  position: absolute;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
+  z-index: 10;
 
   @media screen and (max-width: 1400px) {
-    bottom: 5%;
+    bottom: -20%;
   }
 
   @media screen and (max-width: 440px) {
-    bottom: 20%;
+    bottom: -20%;
   }
 `;
-
-const paintings = [
-  {
-    id: "left",
-    background: "salmon", // 또는 backgroundImage: "url('/images/left.png')"
-  },
-  {
-    id: "right",
-    background: "green", // 또는 backgroundImage: "url('/images/right.png')"
-  },
-];
 
 const Main = () => {
   const [conversationStage, setConversationStage] = useState(0); //대화관련 상태 입니다.
   const [selectedPainting, setSelectedPainting] = useState(null); //모달(확대) 상태 입니다.
+
+  const aiContext = require.context("../imgs/ai", false, /\.(png|jpe?g|svg)$/);
+  const realContext = require.context(
+    "../imgs/real",
+    false,
+    /\.(png|jpe?g|svg)$/
+  );
+
+  const aiImages = aiContext.keys().map(aiContext);
+  const realImages = realContext.keys().map(realContext);
+
+  const [paintings, setPaintings] = useState([
+    { id: "left", background: "" },
+    { id: "right", background: "" },
+  ]);
+
+  useEffect(() => {
+    const randomAi = getRandomImage(aiImages);
+    const randomReal = getRandomImage(realImages);
+
+    const isAiLeft = Math.random() < 0.5; // 50% 확률
+
+    if (isAiLeft) {
+      setPaintings([
+        { id: "left", background: randomAi },
+        { id: "right", background: randomReal },
+      ]);
+    } else {
+      setPaintings([
+        { id: "left", background: randomReal },
+        { id: "right", background: randomAi },
+      ]);
+    }
+  }, []);
+
+  function getRandomImage(imageList) {
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    return imageList[randomIndex];
+  }
 
   const getChatText = () => {
     switch (conversationStage) {
@@ -437,8 +484,9 @@ const Main = () => {
       <Link to={"/#"}>
         <HomeBtn>홈 가기</HomeBtn>
       </Link>
+
       <Link to={"/ending"}>
-        <HomeBtn>엔딩 가기</HomeBtn>
+        <EndBtn>엔딩 가기</EndBtn>
       </Link>
 
       <Npc>
@@ -446,10 +494,24 @@ const Main = () => {
       </Npc>
 
       <PaintingWrap>
-        <Painting style={{ background: paintings[0].background }}>
+        <Painting
+          style={{
+            backgroundImage: `url(${paintings[0].background})`,
+            backgroundSize: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <img src={paintframe} alt="액자사진" id="frame" />
         </Painting>
-        <Painting style={{ background: paintings[1].background }}>
+        <Painting
+          style={{
+            backgroundImage: `url(${paintings[1].background})`,
+            backgroundSize: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <img src={paintframe} alt="액자사진" id="frame" />
         </Painting>
       </PaintingWrap>
@@ -518,20 +580,31 @@ const Main = () => {
             <CloseButton onClick={() => setSelectedPainting(null)}>
               <img src={closeBtn} alt="팝업창닫기" />
             </CloseButton>
-            <EnlargedPainting
-              style={{
-                background:
-                  selectedPainting === "left"
-                    ? paintings[0].background
-                    : paintings[1].background,
-              }}
+            <TransformWrapper
+              initialScale={1}
+              initialPositionX={0}
+              initialPositionY={0}
             >
-              {selectedPainting === "left" ? (
-                <img src={paintframe} alt="왼쪽그림확대" />
-              ) : (
-                <img src={paintframe} alt="오른쪽그림확대" />
-              )}
-            </EnlargedPainting>
+              <TransformComponent>
+                <EnlargedPainting
+                  style={{
+                    backgroundImage: `url(${
+                      selectedPainting === "left"
+                        ? paintings[0].background
+                        : paintings[1].background
+                    })`,
+                    backgroundSize: "cover", // 선택
+                    backgroundPosition: "center", // 선택
+                  }}
+                >
+                  {/* {selectedPainting === "left" ? (
+                    <img src={paintframe} alt="왼쪽그림확대" />
+                  ) : (
+                    <img src={paintframe} alt="오른쪽그림확대" />
+                  )} */}
+                </EnlargedPainting>
+              </TransformComponent>
+            </TransformWrapper>
           </ModalContainer>
         </ModalBackground>
       )}
