@@ -21,13 +21,22 @@ const Npc = styled.div`
   img {
     width: 300px;
     height: auto;
+    transform: translateX(20px);
+  }
+`;
+
+const Npc3 = styled.div`
+  img {
+    width: 200px;
+    height: auto;
+    transform: translateX(50px);
   }
 `;
 
 const Chat = styled.div`
   width: 640px;
   position: absolute;
-  bottom: 8%;
+  bottom: 20%;
   left: 52%;
   transform: translateX(-50%);
 
@@ -82,9 +91,9 @@ const Loading = ({ correctCount }) => {
       )}
       {correctCount > 3 && correctCount <= 8 && (
         <>
-          <Npc>
+          <Npc3>
             <img src={emotion3} alt="여욱이 중" />
-          </Npc>
+          </Npc3>
           <Link to={"/ending"}>
             <Chat>
               <img src={chat1} alt="말풍선이미지" />

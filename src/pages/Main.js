@@ -412,9 +412,26 @@ const Main = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [conversationStage, setConversationStage] = useState(0);
   const [selectedPainting, setSelectedPainting] = useState(null);
+  const [seenRealIds, setSeenRealIds] = useState([]);
 
   /** 게임이 끝났는지 여부: 끝나면 <Loading>만 표시 */
   const [isGameOver, setIsGameOver] = useState(false);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트된 직후, 한 번만 실행
+    localStorage.removeItem("seenRealIds");
+    setSeenRealIds([]); // state도 초기화
+  }, []); // 빈 배열
+
+  // 파일 경로(ex: ".../real_4.jpg")에서 숫자(ID)만 뽑아내는 함수
+  const extractRealIdFromPath = (filePath) => {
+    // 경로 → 파일명 추출
+    const fileName = filePath.split("/").pop(); // "real_4.jpg" 등
+    // 정규식으로 real_숫자. 에 해당하는 부분 찾기
+    const match = fileName.match(/real_(\d+)\./);
+    if (!match) return null;
+    return parseInt(match[1], 10); // "4" → 정수 4
+  };
 
   /** 2) 폴더에서 이미지 불러오기 → 초기 state로 복사 */
   const aiContext = require.context("../imgs/ai", false, /\.(png|jpe?g|svg)$/);
@@ -439,7 +456,7 @@ const Main = () => {
 
   // ------------------------- 게임/문제 출제 로직 -------------------------
   /** 새 문제(라운드) 불러오기 */
-  function loadNewQuestion() {
+  const loadNewQuestion = () => {
     // 이미 10라운드를 모두 마쳤다면 더 이상 문제 없음.
     if (roundCount > 10) {
       endGame();
@@ -487,11 +504,25 @@ const Main = () => {
     // 대화/모달 초기화
     setConversationStage(0);
     setSelectedPainting(null);
-  }
+  };
 
   /** 그림 선택 시 정답 체크 & 다음 문제 */
-  function handleSelect(direction) {
+  const handleSelect = (direction) => {
     const chosen = paintings.find((p) => p.id === direction);
+    const realPainting = paintings.find((p) => p.type === "real");
+    if (realPainting) {
+      // "real_4.jpg" → 4
+      const realId = extractRealIdFromPath(realPainting.background);
+      if (realId !== null) {
+        // seenRealIds 배열 업데이트
+        const updated = [...seenRealIds, realId];
+        setSeenRealIds(updated);
+
+        // 로컬 스토리지에도 즉시 반영
+        localStorage.setItem("seenRealIds", JSON.stringify(updated));
+      }
+    }
+
     if (!chosen) return;
 
     // 정답 (type === "real")
@@ -511,17 +542,17 @@ const Main = () => {
       setRoundCount((prev) => prev + 1);
       loadNewQuestion();
     }
-  }
+  };
 
   /** 게임 종료 → <Loading>화면 표시로 전환 */
-  function endGame() {
+  const endGame = () => {
     // alert(`게임 종료!\n최종 점수: ${correctCount} / 10`);
     // 게임 화면 감추고 <Loading>만 표시
     setIsGameOver(true);
-  }
+  };
 
   // ------------------------- 대화 관련 -------------------------
-  function getChatText() {
+  const getChatText = () => {
     switch (conversationStage) {
       case 0:
         return (
@@ -547,7 +578,7 @@ const Main = () => {
       default:
         return null;
     }
-  }
+  };
 
   // ------------------------- 첫 문제 로드 -------------------------
   useEffect(() => {
@@ -565,6 +596,7 @@ const Main = () => {
   }
 
   // 2) 게임 진행 중이면 기존 화면 렌더
+
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
