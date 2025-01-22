@@ -19,6 +19,9 @@ const CustomSwiper = styled(Swiper)`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    @media screen and (max-width: 440px) {
+      height: 400px;
+    }
   }
 
   .frame {
