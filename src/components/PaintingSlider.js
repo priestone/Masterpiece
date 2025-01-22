@@ -57,6 +57,13 @@ const CustomSwiper = styled(Swiper)`
 
   .swiper-pagination-bullet {
     background: #ffb400;
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #444;
   }
 `;
 
