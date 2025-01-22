@@ -97,24 +97,24 @@ const Chat = styled.div`
   }
   @media screen and (max-width: 440px) {
     position: absolute;
-    width: 360px;
+    width: 320px;
     left: 36%;
     bottom: 25%;
 
     h2 {
-      width: 350px;
+      width: 200px;
       font-size: 14px;
-      left: 66%;
+      left: 55%;
       top: 20%;
-      line-height: 35px;
+      line-height: 30px;
     }
 
     .head {
       display: block;
       position: absolute;
-      width: 100px;
+      width: 80px;
       bottom: -20%;
-      right: 5%;
+      right: -10%;
     }
   }
 `;
