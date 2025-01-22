@@ -23,49 +23,67 @@ const Npc = styled.div`
     height: auto;
     transform: translateX(20px);
   }
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Npc3 = styled.div`
   img {
     width: 200px;
     height: auto;
-    transform: translateX(50px);
+    transform: translateX(20px);
   }
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Chat = styled.div`
-  width: 640px;
+  width: 600px;
   position: absolute;
-  bottom: 10%;
-  left: 52%;
+  bottom: 15%;
+  left: 50%;
   transform: translateX(-50%);
+  z-index: 101;
 
   h2 {
     width: 400px;
     position: absolute;
     top: 24%;
-    left: 52%;
+    left: 54%;
     transform: translateX(-50%);
-    font-size: 26px;
+    font-size: 25px;
+    font-family: "Noto Sans KR";
     font-weight: bold;
     line-height: 50px;
     color: #827459;
+    cursor: pointer;
   }
 
-  @media screen and (max-width: 1400px) {
-    width: 600px;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 500px;
+  @media screen and (max-width: 440px) {
+    width: 330px;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
 
     h2 {
-      font-size: 20px;
-      left: 60%;
-      line-height: 40px;
+      position: absolute;
+      top: 28%;
+      left: 54%;
+      transform: translateX(-50%);
+      width: 200px;
+      font-size: 15px;
+      left: 50%;
+      line-height: 24px;
     }
   }
 `;
+
+
 
 const ScoreDisplay = styled.div`
   font-size: 18px;
