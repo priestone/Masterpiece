@@ -9,6 +9,7 @@ import PaintingSlider from "../components/PaintingSlider";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { data } from "../data/Data";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
   width: 100%;
@@ -197,6 +198,10 @@ const Ending = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>부엉이의 박물관</title>
+      </Helmet>
+
       <Npc>
         <img className="body" src={body} alt="부엉이" />
       </Npc>

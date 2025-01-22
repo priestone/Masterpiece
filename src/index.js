@@ -9,7 +9,7 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
       <GlobalStyled />
-      <Router></Router>
+      <Router />
     </HelmetProvider>
   </React.StrictMode>
 );
