@@ -1,9 +1,10 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import emotion1 from "../components/img/emotion/emotion_1.png";
 import emotion2 from "../components/img/emotion/emotion_2.png";
 import emotion3 from "../components/img/emotion/emotion_3.png";
 import chat1 from "../components/img/chat/chat1_2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -55,7 +56,7 @@ const Chat = styled.div`
     top: 24%;
     left: 54%;
     transform: translateX(-50%);
-    font-size: 25px;
+    font-size: 23px;
     font-family: "Noto Sans KR";
     font-weight: bold;
     line-height: 50px;
@@ -66,7 +67,7 @@ const Chat = styled.div`
   @media screen and (max-width: 440px) {
     width: 330px;
     position: absolute;
-    bottom: 30%;
+    bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
 
@@ -85,78 +86,54 @@ const Chat = styled.div`
 
 
 
-const ScoreDisplay = styled.div`
-  font-size: 18px;
-  color: white;
-  text-align: center;
-  position: absolute;
-  top: 80px;
-  
-
-  span {
-    font-weight: bold;
-    color: #f0c674;
-  }
-`;
-
 const Loading = ({ correctCount, totalQuestions }) => {
+  const [clickCount, setClickCount] = useState(0);
+  const [message, setMessage] = useState(`히야~ 손님께서는 총 10라운드중 ${correctCount}번 진품을 찾으셨습니다요!`);
+  const navigate = useNavigate(); // useNavigate 훅 추가
+
+  const handleChatClick = () => {
+    if (clickCount === 0) {
+      // 첫 번째 클릭: 기본 메시지
+      setMessage(`히야~ 손님께서는 총 10라운드중 ${correctCount}번 진품을 찾으셨습니다요!`);
+    } else if (clickCount === 1) {
+      // 두 번째 클릭: 맞춘 갯수에 따른 메시지
+      if (correctCount <= 3) {
+        setMessage("이야~ 오늘도 손님 덕분에 기분이 하늘을 찌릅니다요!");
+      } else if (correctCount <= 8) {
+        setMessage("쳇, 제법 눈썰미가 좋으신 것 같습니다요~");
+      } else {
+        setMessage("흑흑, 손님! 진품만 쏙쏙 고르셨군요.");
+      }
+    } else if (clickCount === 2) {
+      // 세 번째 클릭: 엔딩 페이지로 이동
+      navigate("/ending"); // React Router의 navigate로 엔딩 페이지로 이동
+    }
+
+    setClickCount((prevCount) => prevCount + 1); // 클릭 카운트 증가
+  };
+
   return (
     <Container>
-      <ScoreDisplay>
-        맞춘 갯수: <span>{correctCount}/10</span>
-      </ScoreDisplay>
       {correctCount <= 3 && (
-        <>
-          <Npc>
-            <img src={emotion2} alt="여욱이 하" />
-          </Npc>
-          <Link to={"/ending"}>
-            <Chat>
-              <img src={chat1} alt="말풍선이미지" />
-              <h2>
-                이야~ 오늘도 손님 덕분에
-                <br />
-                기분이 하늘을 찌릅니다요!
-              </h2>
-            </Chat>
-          </Link>
-        </>
+        <Npc>
+          <img src={emotion2} alt="여욱이 하" />
+        </Npc>
       )}
       {correctCount > 3 && correctCount <= 8 && (
-        <>
-          <Npc3>
-            <img src={emotion3} alt="여욱이 중" />
-          </Npc3>
-          <Link to={"/ending"}>
-            <Chat>
-              <img src={chat1} alt="말풍선이미지" />
-              <h2>
-                쳇, 제법 눈썰미가
-                <br />
-                좋으신 것 같습니다요~
-              </h2>
-            </Chat>
-          </Link>
-        </>
+        <Npc3>
+          <img src={emotion3} alt="여욱이 중" />
+        </Npc3>
       )}
       {correctCount > 8 && (
-        <>
-          <Npc>
-            <img src={emotion1} alt="여욱이 상" />
-          </Npc>
-          <Link to={"/ending"}>
-            <Chat>
-              <img src={chat1} alt="말풍선이미지" />
-              <h2>
-                흑흑, 손님!
-                <br />
-                진품만 쏙쏙 고르셨군요.
-              </h2>
-              
-            </Chat>
-          </Link>
-        </>
+        <Npc>
+          <img src={emotion1} alt="여욱이 상" />
+        </Npc>
       )}
+      
+      <Chat>
+        <img src={chat1} alt="말풍선이미지" />
+        <h2 onClick={handleChatClick}>{message}</h2>
+      </Chat>
     </Container>
   );
 };
