@@ -479,6 +479,17 @@ const CloseButton = styled.button`
   }
 `;
 
+const randomDialogues = [
+  ["어떠십니까? 감히 말하건데", "손님 취향에 찰떡입니다요!"],
+  ["헷, 이번에는 진짜 특급 희귀품!", "한 번 보시죠!"],
+  ["흐흐~ 손님, 이건 그냥 지나치기엔", "아까운 보물입니다요!"],
+  ["손님, 믿음이 중요합니다요!", "이번 작품은 대박입니다!"],
+  ["히야~ 정말 멋진 그림들입니다요!", "자세히 살펴 보시죠~ 헷헷헷"],
+  ["이 작품들 좀 보십시오~", "한눈에 반할만한 녀석입니다요!"],
+  ["이건 진짜 물건입니다요~! ", "놓치면 아쉬울 겁니다요!"],
+  ["슬쩍 한번 둘러보시죠, 손님~ ", "훌륭한 작품들입니다요! 헷헷"],
+];
+
 const Main = () => {
   /** 1) 라운드/정답/대화 등 상태들 */
   const [roundCount, setRoundCount] = useState(1); // 1~10까지 문제
@@ -486,9 +497,15 @@ const Main = () => {
   const [conversationStage, setConversationStage] = useState(0);
   const [selectedPainting, setSelectedPainting] = useState(null);
   const [seenRealIds, setSeenRealIds] = useState([]);
+  const [dialogueLines, setDialogueLines] = useState(["", ""]);
 
   /** 게임이 끝났는지 여부: 끝나면 <Loading>만 표시 */
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const RandomChat = () => {
+    const idx = Math.floor(Math.random() * randomDialogues.length);
+    setDialogueLines(randomDialogues[idx]);
+  };
 
   useEffect(() => {
     // 컴포넌트가 마운트된 직후, 한 번만 실행
@@ -577,6 +594,8 @@ const Main = () => {
     // 대화/모달 초기화
     setConversationStage(0);
     setSelectedPainting(null);
+
+    RandomChat();
   };
 
   /** 그림 선택 시 정답 체크 & 다음 문제 */
@@ -630,8 +649,9 @@ const Main = () => {
       case 0:
         return (
           <>
-            히야~ 정말 멋진 그림들입니다요! <br />
-            자세히 살펴 보시죠~ 헷헷헷
+            {dialogueLines[0]}
+            <br />
+            {dialogueLines[1]}
           </>
         );
       case 1:
