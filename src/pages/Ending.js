@@ -192,7 +192,7 @@ const Ending = () => {
       data.real.find((painting) => painting.id === id)
     );
 
-    setSelectedRealImages(realPaintings); // 상태에 저장
+    setSelectedRealImages(realPaintings);
   }, []);
 
   return (
