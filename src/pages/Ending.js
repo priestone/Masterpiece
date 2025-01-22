@@ -7,6 +7,8 @@ import body from "../components/img/npc/2_body.png";
 import head from "../components/img/npc/2_head.png";
 import PaintingSlider from "../components/PaintingSlider";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { data } from "../data/Data";
 
 const Container = styled.div`
   width: 100%;
@@ -178,8 +180,21 @@ const Button = styled.button`
 `;
 
 const Ending = () => {
-  const location = useLocation();
-  const selectedRealImages = location.state?.selectedRealImages || [];
+  const [selectedRealImages, setSelectedRealImages] = useState([]);
+
+  const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
+
+  useEffect(() => {
+    // 로컬 스토리지에서 ID 목록 가져오기
+    const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
+
+    // ID에 해당하는 데이터를 Data.js에서 찾기
+    const realPaintings = storedIds.map((id) =>
+      data.real.find((painting) => painting.id === id)
+    );
+
+    setSelectedRealImages(realPaintings); // 상태에 저장
+  }, []);
 
   return (
     <Container>

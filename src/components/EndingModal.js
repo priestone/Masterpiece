@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import downarrow from "../components/img/downarrow.svg";
+import real_0 from "../imgs/real/real_0.jpg";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -20,9 +21,7 @@ const ModalContent = styled.div`
   background: #000d24;
   opacity: 0.8;
   width: 100%;
-  /* max-width: 80%; */
   height: 100vh;
-  /* max-height: 90%; */
   padding: 200px;
 
   @media screen and (max-width: 1400px) {
@@ -49,7 +48,7 @@ const ImageWrapper = styled.div`
     width: 600px;
     height: 600px;
     object-fit: cover;
-    border: 5px solid salmon;
+    /* border: 5px solid salmon; */
   }
 
   @media screen and (max-width: 1400px) {
@@ -213,11 +212,21 @@ const CloseArrow = styled.div`
 const EndingModal = ({ isOpen, onClose, painting }) => {
   if (!isOpen) return null;
 
+  const getImagePath = (id) => {
+    try {
+      const fileName = `real_${id}.jpg`; // id를 이용해 파일 이름 생성
+      return require(`../imgs/real/${fileName}`);
+    } catch (error) {
+      console.error(`Image not found: real_${id}.jpg`);
+      return real_0; // 기본 이미지
+    }
+  };
+
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ImageWrapper>
-          <img src={painting.image} alt={painting.title} />
+          <img src={getImagePath(painting.id)} alt={painting.title} />
         </ImageWrapper>
 
         <TextWrapper>
