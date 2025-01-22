@@ -166,7 +166,7 @@ const Npc1 = styled.div`
   position: absolute;
   bottom: 5%;
   right: 8%;
-  z-index: 999;
+  z-index: 99;
   img {
     width: 100%;
     height: auto;
