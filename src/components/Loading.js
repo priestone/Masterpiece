@@ -64,6 +64,12 @@ const Chat = styled.div`
     cursor: pointer;
   }
 
+  span {
+    color: #0fb3cf;
+    font-weight: bold;
+    margin-left: 8px;
+  }
+
   @media screen and (max-width: 440px) {
     width: 330px;
     position: absolute;
@@ -111,7 +117,7 @@ const Loading = ({ correctCount }) => {
       navigate("/ending");
     }
 
-    setClickCount(prevCount => prevCount + 1);
+    setClickCount((prevCount) => prevCount + 1);
   };
 
   return (
@@ -135,7 +141,8 @@ const Loading = ({ correctCount }) => {
       <Chat>
         <img src={chat1} alt="말풍선이미지" />
         <h2 onClick={handleChatClick}>
-          {message}
+          히야~ 손님께서는
+          <span>{correctCount}개</span>의 진품을 구매하셨습니다요!`
         </h2>
       </Chat>
     </Container>
