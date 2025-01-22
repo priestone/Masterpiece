@@ -527,9 +527,15 @@ const Main = () => {
   };
 
   useEffect(() => {
-    // 컴포넌트가 마운트된 직후, 한 번만 실행
-    localStorage.removeItem("seenRealIds");
-    setSeenRealIds([]); // state도 초기화
+    (() => {
+      try {
+        // 컴포넌트가 마운트된 직후, 한 번만 실행
+        localStorage.removeItem("seenRealIds");
+        setSeenRealIds([]); // state도 초기화
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []); // 빈 배열
 
   // 파일 경로(ex: ".../real_4.jpg")에서 숫자(ID)만 뽑아내는 함수
@@ -694,11 +700,17 @@ const Main = () => {
 
   // ------------------------- 첫 문제 로드 -------------------------
   useEffect(() => {
-    // paintings가 비어있고, roundCount=1 일 때만 첫 문제 로드
-    if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
-      loadNewQuestion();
-    }
-    // eslint-disable-next-line
+    (async () => {
+      try {
+        // paintings가 비어있고, roundCount=1 일 때만 첫 문제 로드
+        if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
+          await loadNewQuestion();
+        }
+        // eslint-disable-next-line
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, [aiUnused, realUnused]);
 
   // ------------------------- 렌더링 -------------------------
