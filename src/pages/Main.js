@@ -4,14 +4,14 @@ import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
 import cursor from "../components/img/cursor.png";
-import homeBtn from "../components/img/homeBtn.png";
+import homeBtn from "../components/img/homBtn.svg";
 import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 import closeBtn from "../components/img/downarrow.svg";
-import neoguri from "../components/img/neoguri.png";
-import museum from "../components/img/museum.png";
+import neoguri from "../components/img/neogurinew.png";
+import museum from "../components/img/museum.svg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -19,11 +19,28 @@ import Loading from "../components/Loading";
 
 const HomeBtn = styled.div`
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
   width: 100px;
   height: 100px;
-  background: url(${homeBtn}) no-repeat center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 60px;
+    height: 60px;
+
+    img {
+      width: 60%;
+    }
+  }
+
+  /* background: url(${homeBtn}) no-repeat center / cover; */
 `;
 
 const RoundWrap = styled.div`
@@ -91,7 +108,7 @@ const Bar = styled.div`
   #neoguri {
     position: absolute;
     top: -20px;
-    right: 0;
+    right: 10px;
     width: 50px;
     transform: translateX(50%);
     z-index: 11;
@@ -259,7 +276,7 @@ const Chat = styled.div`
 const SubChat = styled.div`
   position: absolute;
   top: -8%;
-  right: -14%;
+  right: -16%;
   color: #827459;
   display: flex;
   flex-direction: column;
@@ -306,6 +323,7 @@ const SubChat = styled.div`
     width: 180px;
     height: 128px;
     gap: 10px;
+    right: -12%;
 
     img {
       width: 180px;
@@ -323,6 +341,7 @@ const SubChat = styled.div`
     width: 140px;
     height: 99px;
     gap: 2px;
+    right: -8%;
 
     img {
       width: 140px;
@@ -703,11 +722,13 @@ const Main = () => {
             <img src={neoguri} alt="너구리이미지" id="neoguri" />
           </Bar>
         </Round>
-        <img src={museum} alt="박물관관이미지" id="museum" />
+        <img src={museum} alt="박물관이미지" id="museum" />
       </RoundWrap>
 
       <Link to={"/#"}>
-        <HomeBtn />
+        <HomeBtn>
+          <img src={homeBtn} alt="홈홈이미지" />
+        </HomeBtn>
       </Link>
 
       <Npc>
