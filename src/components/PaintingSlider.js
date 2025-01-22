@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
-import real1_0 from "../imgs/real/real_0.jpg";
+import real_0 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
 import { data } from "../data/Data";
 import { useState } from "react";
@@ -57,7 +57,7 @@ const CustomSwiper = styled(Swiper)`
   }
 `;
 
-const PaintingSlider = () => {
+const PaintingSlider = ({ paintings }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPainting, setSelectedPainting] = useState(null);
 
@@ -70,6 +70,23 @@ const PaintingSlider = () => {
     setIsModalOpen(false);
     setSelectedPainting(null);
   };
+
+  const realContext = require.context(
+    "../imgs/real",
+    false,
+    /\.(png|jpe?g|svg)$/
+  );
+
+  // id로 이미지 찾기
+  const getImageById = (id) => {
+    try {
+      return realContext(`./real_${id}.jpg`);
+    } catch (error) {
+      console.error(`error`, error);
+      return null;
+    }
+  };
+
   return (
     <>
       <CustomSwiper
@@ -85,12 +102,12 @@ const PaintingSlider = () => {
         }}
         style={{ paddingBottom: "30px" }}
       >
-        {data.real.map((painting) => (
+        {paintings.map((painting) => (
           <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
             <img className="frame" src={paintframe} alt="frame" />
             <img
               className="artwork"
-              src={painting.image || real1_0}
+              src={getImageById(painting.id) || real_0}
               alt={painting.title}
             />
           </SwiperSlide>
