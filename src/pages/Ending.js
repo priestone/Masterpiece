@@ -6,7 +6,7 @@ import chat2_1 from "../components/img/chat/chat2_1.png";
 import body from "../components/img/npc/2_body.png";
 import head from "../components/img/npc/2_head.png";
 import PaintingSlider from "../components/PaintingSlider";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { data } from "../data/Data";
 
@@ -97,7 +97,7 @@ const Chat = styled.div`
   }
   @media screen and (max-width: 440px) {
     position: absolute;
-    width: 380px;
+    width: 360px;
     left: 36%;
     bottom: 25%;
 
@@ -186,10 +186,8 @@ const Ending = () => {
   const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
 
   useEffect(() => {
-    // 로컬 스토리지에서 ID 목록 가져오기
     const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
 
-    // ID에 해당하는 데이터를 Data.js에서 찾기
     const realPaintings = storedIds.map((id) =>
       data.real.find((painting) => painting.id === id)
     );
