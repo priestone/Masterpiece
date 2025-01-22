@@ -95,19 +95,19 @@ const TextWrapper = styled.div`
 
   h2 {
     font-size: 54px;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 30px;
   }
 
   h3 {
     font-size: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 30px;
   }
 
   h4 {
     font-size: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 50px;
   }
 

@@ -102,6 +102,7 @@ const Chat = styled.div`
     bottom: 25%;
 
     h2 {
+      width: 350px;
       font-size: 14px;
       left: 66%;
       top: 20%;
