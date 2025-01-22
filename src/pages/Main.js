@@ -10,6 +10,8 @@ import npc1head from "../components/img/npc/1_head.png";
 import chat1_1 from "../components/img/chat/chat1_1.png";
 import chat3 from "../components/img/chat/chat3.png";
 import closeBtn from "../components/img/downarrow.svg";
+import neoguri from "../components/img/neoguri.png";
+import museum from "../components/img/museum.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -24,13 +26,84 @@ const HomeBtn = styled.div`
   background: url(${homeBtn}) no-repeat center / cover;
 `;
 
-const EndBtn = styled.div`
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 100px;
-  height: 100px;
-  background: url(${homeBtn}) no-repeat center / cover;
+const RoundWrap = styled.div`
+  position: relative;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  width: 500px;
+  height: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: green;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  #museum {
+    position: absolute;
+    top: -24px;
+    right: -50px;
+    width: 100px;
+    z-index: 10;
+  }
+
+  @media screen and (max-width: 440px) {
+    top: 20%;
+    width: 300px;
+    height: 10px;
+
+    #museum {
+      width: 60px;
+      top: -20px;
+      right: -20px;
+    }
+  }
+`;
+
+const Round = styled.div`
+  width: 500px;
+
+  @media screen and (max-width: 440px) {
+    width: 300px;
+  }
+`;
+
+const Bar = styled.div`
+  /* width: 10px; */
+  height: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: green;
+  border-radius: 20px;
+  /* border-radius: 50%; */
+
+  #neoguri {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 50px;
+    transform: translateX(50%);
+    z-index: 11;
+  }
+
+  @media screen and (max-width: 440px) {
+    height: 10px;
+    #neoguri {
+      width: 40px;
+      top: -20px;
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -101,7 +174,7 @@ const PaintingWrap = styled.div`
 
   @media screen and (max-width: 440px) {
     width: 90%;
-    top: 24%;
+    top: 34%;
   }
 `;
 
@@ -171,7 +244,7 @@ const Chat = styled.div`
 
   @media screen and (max-width: 440px) {
     width: 340px;
-    bottom: 30%;
+    bottom: 20%;
     left: 50%;
 
     h2 {
@@ -597,29 +670,24 @@ const Main = () => {
 
   // 2) 게임 진행 중이면 기존 화면 렌더
 
+  const barWidthPercent = ((roundCount - 1) / 9) * 100;
+
   return (
     <Container>
       <img src={mainBox} alt="박스배경" id="boxBg" />
 
-      <div
-        style={{
-          position: "fixed",
-          top: "10px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "#fff",
-          fontSize: "20px",
-          fontWeight: "bold",
-        }}
-      >
-        라운드: {roundCount} / 10
-      </div>
+      <RoundWrap>
+        <p>{roundCount} / 10</p>
+        <Round>
+          <Bar style={{ width: `${barWidthPercent}%` }}>
+            <img src={neoguri} alt="너구리이미지" id="neoguri" />
+          </Bar>
+        </Round>
+        <img src={museum} alt="박물관관이미지" id="museum" />
+      </RoundWrap>
 
       <Link to={"/#"}>
         <HomeBtn />
-      </Link>
-      <Link to={"/ending"}>
-        <EndBtn />
       </Link>
 
       <Npc>
