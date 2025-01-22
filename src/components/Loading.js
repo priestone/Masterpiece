@@ -4,7 +4,7 @@ import emotion1 from "../components/img/emotion/emotion_1.png";
 import emotion2 from "../components/img/emotion/emotion_2.png";
 import emotion3 from "../components/img/emotion/emotion_3.png";
 import chat1 from "../components/img/chat/chat1_2.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -84,19 +84,21 @@ const Chat = styled.div`
   }
 `;
 
+const CorrectCountSpan = styled.span`
+  color: #0fb3cf;
+  font-weight: bold;
+`;
 
-
-const Loading = ({ correctCount, totalQuestions }) => {
+const Loading = ({ correctCount }) => {
   const [clickCount, setClickCount] = useState(0);
-  const [message, setMessage] = useState(`히야~ 손님께서는 총 10라운드중 ${correctCount}번 진품을 찾으셨습니다요!`);
-  const navigate = useNavigate(); // useNavigate 훅 추가
+  const [message, setMessage] = useState(
+    `히야~ 손님께서는 ${correctCount}개의 진품을 구매하셨습니다요!`
+  );
+  const navigate = useNavigate();
 
   const handleChatClick = () => {
     if (clickCount === 0) {
-      // 첫 번째 클릭: 기본 메시지
-      setMessage(`히야~ 손님께서는 총 10라운드중 ${correctCount}번 진품을 찾으셨습니다요!`);
-    } else if (clickCount === 1) {
-      // 두 번째 클릭: 맞춘 갯수에 따른 메시지
+      // 첫 번째 클릭: 맞춘 갯수에 따른 메시지
       if (correctCount <= 3) {
         setMessage("이야~ 오늘도 손님 덕분에 기분이 하늘을 찌릅니다요!");
       } else if (correctCount <= 8) {
@@ -104,12 +106,12 @@ const Loading = ({ correctCount, totalQuestions }) => {
       } else {
         setMessage("흑흑, 손님! 진품만 쏙쏙 고르셨군요.");
       }
-    } else if (clickCount === 2) {
-      // 세 번째 클릭: 엔딩 페이지로 이동
-      navigate("/ending"); // React Router의 navigate로 엔딩 페이지로 이동
+    } else if (clickCount === 1) {
+      // 두 번째 클릭: 엔딩 페이지로 이동
+      navigate("/ending");
     }
 
-    setClickCount((prevCount) => prevCount + 1); // 클릭 카운트 증가
+    setClickCount(prevCount => prevCount + 1);
   };
 
   return (
@@ -129,10 +131,12 @@ const Loading = ({ correctCount, totalQuestions }) => {
           <img src={emotion1} alt="여욱이 상" />
         </Npc>
       )}
-      
+
       <Chat>
         <img src={chat1} alt="말풍선이미지" />
-        <h2 onClick={handleChatClick}>{message}</h2>
+        <h2 onClick={handleChatClick}>
+          {message}
+        </h2>
       </Chat>
     </Container>
   );
