@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -725,6 +726,10 @@ const Main = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>여욱이의 배</title>
+      </Helmet>
+
       <img src={mainBox} alt="박스배경" id="boxBg" />
 
       <RoundWrap>
