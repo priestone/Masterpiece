@@ -23,6 +23,7 @@ const ModalContent = styled.div`
   width: 100%;
   height: 100vh;
   padding: 200px;
+  overflow: auto;
 
   @media screen and (max-width: 1400px) {
     padding: 100px;
