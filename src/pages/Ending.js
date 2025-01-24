@@ -150,11 +150,11 @@ const ButtonWrap = styled.div`
     bottom: 9%;
   }
   @media screen and (max-width: 440px) {
-    width: 300px;
+    width: 100%;
     flex-direction: row;
-    justify-content: space-between;
-    bottom: 12%;
-    right: 15%;
+    justify-content: space-evenly;
+    margin: 0;
+    right: 1%;
   }
 `;
 const Button = styled.button`
@@ -183,8 +183,6 @@ const Button = styled.button`
 
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
-
-  const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
 
   useEffect(() => {
     const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
