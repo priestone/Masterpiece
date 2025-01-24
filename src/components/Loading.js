@@ -53,7 +53,7 @@ const Chat = styled.div`
   h2 {
     width: 400px;
     position: absolute;
-    top: 24%;
+    top: 30%;
     left: 54%;
     transform: translateX(-50%);
     font-size: 23px;
@@ -67,7 +67,7 @@ const Chat = styled.div`
   span {
     color: #0fb3cf;
     font-weight: bold;
-    margin-left: 8px;
+    margin-left: 2px;
   }
 
   @media screen and (max-width: 440px) {
@@ -79,7 +79,7 @@ const Chat = styled.div`
 
     h2 {
       position: absolute;
-      top: 28%;
+      top: 32%;
       left: 54%;
       transform: translateX(-50%);
       width: 200px;
@@ -90,15 +90,10 @@ const Chat = styled.div`
   }
 `;
 
-const CorrectCountSpan = styled.span`
-  color: #0fb3cf;
-  font-weight: bold;
-`;
-
 const Loading = ({ correctCount }) => {
   const [clickCount, setClickCount] = useState(0);
   const [message, setMessage] = useState(
-    `히야~ 손님께서는 ${correctCount}개의 진품을 구매하셨습니다요!`
+    `히야~ 손님께서는 <span style="color:#0fb3cf; font-family:Noto Sans KR; font-weight:bold;">${correctCount}개</span>의 진품을 구매하셨습니다요!`
   );
   const navigate = useNavigate();
 
@@ -138,13 +133,9 @@ const Loading = ({ correctCount }) => {
         </Npc>
       )}
 
-      <Chat>
+      <Chat onClick={handleChatClick}>
         <img src={chat1} alt="말풍선이미지" />
-        <h2 onClick={handleChatClick}>
-          히야~ 손님께서는
-          <span>{correctCount}개</span>의 <br />
-          진품을 구매하셨습니다요!
-        </h2>
+        <h2 dangerouslySetInnerHTML={{ __html: message }}></h2>
       </Chat>
     </Container>
   );
