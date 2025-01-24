@@ -45,6 +45,7 @@ const ChatWrap = styled.div`
     h2 {
       width: 200px;
       font-size: 14px;
+      top: 28%;
       left: 50%;
       line-height: 24px;
     }

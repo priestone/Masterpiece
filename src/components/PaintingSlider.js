@@ -19,7 +19,7 @@ const CustomSwiper = styled(Swiper)`
     align-items: center;
     border-radius: 10px;
     @media screen and (max-width: 440px) {
-      height: 400px;
+      height: 360px;
     }
   }
 
@@ -44,14 +44,23 @@ const CustomSwiper = styled(Swiper)`
     /* background-color: lightsalmon; */
 
     @media screen and (max-width: 440px) {
-      width: 300px;
-      height: 300px;
+      width: 270px;
+      height: 270px;
     }
   }
 
   .swiper-button-next,
   .swiper-button-prev {
     color: #ffb400;
+    @media screen and (max-width: 440px) {
+      transform: translateY(-40px);
+    }
+  }
+
+  .swiper-pagination {
+    @media screen and (max-width: 440px) {
+      display: none;
+    }
   }
 
   .swiper-pagination-bullet {
