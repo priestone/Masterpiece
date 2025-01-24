@@ -23,6 +23,12 @@ const Container = styled.div`
     background: url(${endingMoBg});
     background-position: cover;
   }
+
+  @media screen and (max-width: 440px) {
+    .floorBg {
+      display: none;
+    }
+  }
 `;
 
 const Npc = styled.div`
@@ -227,6 +233,7 @@ const Ending = () => {
         src={endingFloor}
         alt="floor"
         id="floorBg"
+        className="floorBg"
         style={{
           position: "absolute",
           bottom: "0",
