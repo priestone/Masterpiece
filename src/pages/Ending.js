@@ -18,6 +18,7 @@ const Container = styled.div`
   background-size: cover;
   padding-top: 50px;
   position: relative;
+  overflow-x: hidden;
   @media screen and (max-width: 440px) {
     background: url(${endingMoBg});
     background-position: cover;
