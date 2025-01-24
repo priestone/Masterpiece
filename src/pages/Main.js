@@ -8,6 +8,7 @@ import npc1body from "../components/img/npc/1_body.png";
 import closeBtn from "../components/img/downarrow.svg";
 import neoguri from "../components/img/neogurinew.png";
 import museum from "../components/img/museum.svg";
+import loadingImg from "../components/img/loadingimg.svg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -180,7 +181,8 @@ const PaintingWrap = styled.div`
   transform: translate(-50%, -30%);
 
   :nth-child(2) {
-    background-color: green;
+    /* background-color: green; */
+    background: url(${loadingImg});
   }
 
   @media screen and (max-width: 1000px) {
@@ -196,7 +198,8 @@ const PaintingWrap = styled.div`
 const Painting = styled.div`
   width: 400px;
   height: 400px;
-  background-color: salmon;
+  /* background-color: salmon; */
+  background: url(${loadingImg});
   min-width: 400px;
 
   #frame {
@@ -250,7 +253,7 @@ const EnlargedPainting = styled.div`
   width: 500px;
   height: 500px;
   text-align: center;
-  background-color: salmon;
+  /* background-color: salmon; */
   z-index: 11;
   /* overflow:; */
 
