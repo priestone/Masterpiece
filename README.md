@@ -4,13 +4,4 @@
 - [x] npm i react-hook-form
 - [x] npm i react-helmet-async
 - [x] npm i swiper
-
-- [] npm i gh-pages -D
-
-- [] font-awesome
-- [] npm i react-spinners
-
-이게 보이면 반영된겁니다.
-이게 보이면 반영된겁니다2.
-
-엘레나 테스트다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- [x] npm i gh-pages -D
