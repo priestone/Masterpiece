@@ -23,7 +23,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://priestone.github.io/masterpiece/#/",
+  "homepage": "https://priestone.github.io/Masterpiece/#/",
   "eslintConfig": {
     "extends": [
       "react-app",
