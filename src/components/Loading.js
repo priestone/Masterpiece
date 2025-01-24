@@ -142,7 +142,8 @@ const Loading = ({ correctCount }) => {
         <img src={chat1} alt="말풍선이미지" />
         <h2 onClick={handleChatClick}>
           히야~ 손님께서는
-          <span>{correctCount}개</span>의 진품을 구매하셨습니다요!`
+          <span>{correctCount}개</span>의 <br />
+          진품을 구매하셨습니다요!
         </h2>
       </Chat>
     </Container>

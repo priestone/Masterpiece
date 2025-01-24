@@ -3,12 +3,8 @@ import mainBg from "./backgroundImg/mainBg.jpg";
 import mainMoBg from "./backgroundImg/mainMoBg.jpg";
 import mainBox from "./backgroundImg/mainBox.png";
 import paintframe from "../components/img/paintframe.png";
-import cursor from "../components/img/cursor.png";
 import homeBtn from "../components/img/homBtn.svg";
 import npc1body from "../components/img/npc/1_body.png";
-import npc1head from "../components/img/npc/1_head.png";
-import chat1_1 from "../components/img/chat/chat1_1.png";
-import chat3 from "../components/img/chat/chat3.png";
 import closeBtn from "../components/img/downarrow.svg";
 import neoguri from "../components/img/neogurinew.png";
 import museum from "../components/img/museum.svg";
@@ -17,6 +13,7 @@ import { Link } from "react-router-dom";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
+import Chat from "../components/Chat";
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -227,212 +224,6 @@ const Painting = styled.div`
   }
 `;
 
-const Chat = styled.div`
-  width: 640px;
-  position: absolute;
-  bottom: 8%;
-  left: 52%;
-  transform: translateX(-50%);
-
-  h2 {
-    width: 400px;
-    position: absolute;
-    top: 24%;
-    left: 52%;
-    transform: translateX(-50%);
-    font-size: 26px;
-    font-weight: bold;
-    line-height: 50px;
-    color: #827459;
-  }
-
-  @media screen and (max-width: 1400px) {
-    width: 600px;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 500px;
-
-    h2 {
-      font-size: 20px;
-      left: 60%;
-      line-height: 40px;
-    }
-  }
-
-  @media screen and (max-width: 440px) {
-    width: 340px;
-    bottom: 20%;
-    left: 50%;
-
-    h2 {
-      width: 200px;
-      font-size: 14px;
-      left: 50%;
-      line-height: 24px;
-    }
-  }
-`;
-
-const SubChat = styled.div`
-  position: absolute;
-  top: -8%;
-  right: -16%;
-  color: #827459;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  width: 240px;
-  height: 170px;
-
-  img {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    width: 240px;
-  }
-
-  p {
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
-    margin-left: 50px;
-  }
-  h3 {
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 10;
-    margin-left: 50px;
-    cursor: pointer;
-  }
-
-  h4 {
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 10;
-    margin-left: 50px;
-    cursor: pointer;
-  }
-
-  #npc-head {
-    display: none;
-  }
-
-  @media screen and (max-width: 1400px) {
-    width: 180px;
-    height: 128px;
-    gap: 10px;
-    right: -12%;
-
-    img {
-      width: 180px;
-    }
-
-    p,
-    h3,
-    h4 {
-      margin-left: 40px;
-      font-size: 18px;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 140px;
-    height: 99px;
-    gap: 2px;
-    right: -8%;
-
-    img {
-      width: 140px;
-    }
-
-    p,
-    h3,
-    h4 {
-      font-size: 14px;
-    }
-  }
-
-  @media screen and (max-width: 440px) {
-    top: -75%;
-    right: 0%;
-
-    img {
-      width: 150px;
-    }
-
-    p,
-    h3,
-    h4 {
-      font-size: 14px;
-    }
-
-    #npc-head {
-      display: block;
-      width: 100px;
-      position: absolute;
-      bottom: -100px;
-      right: -10%;
-      top: auto;
-      left: auto;
-    }
-  }
-`;
-
-const SubText = styled.div`
-  display: flex;
-  /* width: 240px; */
-  width: 100%;
-  height: 30px;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-
-  img {
-    width: 40px;
-    position: absolute;
-    top: 7%;
-    left: 0%;
-    display: none;
-  }
-
-  &:hover img {
-    display: block;
-  }
-
-  #secondCusor {
-    /* top: 56%; */
-  }
-
-  #thirdCusor {
-    /* top: 76%; */
-  }
-
-  @media screen and (max-width: 1400px) {
-    img {
-      left: -6%;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    img {
-      width: 30px;
-      left: 0%;
-      top: 12%;
-    }
-  }
-
-  @media screen and (max-width: 440px) {
-    img {
-      width: 20px;
-      left: 7%;
-      top: 30%;
-    }
-  }
-`;
-
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -511,45 +302,39 @@ const randomDialogues = [
 ];
 
 const Main = () => {
-  /** 1) 라운드/정답/대화 등 상태들 */
   const [roundCount, setRoundCount] = useState(1); // 1~10까지 문제
-  const [correctCount, setCorrectCount] = useState(0);
-  const [conversationStage, setConversationStage] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0); //맞춘 횟수
+  const [conversationStage, setConversationStage] = useState(0); //대화 단계
   const [selectedPainting, setSelectedPainting] = useState(null);
   const [seenRealIds, setSeenRealIds] = useState([]);
   const [dialogueLines, setDialogueLines] = useState(["", ""]);
+  const [isGameOver, setIsGameOver] = useState(false); //게임 끝 확인
 
-  /** 게임이 끝났는지 여부: 끝나면 <Loading>만 표시 */
-  const [isGameOver, setIsGameOver] = useState(false);
-
+  // 여욱이가 매 라운드마다 랜덤하게 대사치는 함수
   const RandomChat = () => {
     const idx = Math.floor(Math.random() * randomDialogues.length);
     setDialogueLines(randomDialogues[idx]);
   };
 
+  // 엔딩에 필요한 진품 그림 로컬스토리지에 넣는 함수
   useEffect(() => {
     (() => {
       try {
-        // 컴포넌트가 마운트된 직후, 한 번만 실행
         localStorage.removeItem("seenRealIds");
-        setSeenRealIds([]); // state도 초기화
+        setSeenRealIds([]);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []); // 빈 배열
+  }, []);
 
-  // 파일 경로(ex: ".../real_4.jpg")에서 숫자(ID)만 뽑아내는 함수
+  // 파일 경로에서 숫자(ID)만 뽑아내는 함수
   const extractRealIdFromPath = (filePath) => {
-    // 경로 → 파일명 추출
-    const fileName = filePath.split("/").pop(); // "real_4.jpg" 등
-    // 정규식으로 real_숫자. 에 해당하는 부분 찾기
+    const fileName = filePath.split("/").pop();
     const match = fileName.match(/real_(\d+)\./);
     if (!match) return null;
-    return parseInt(match[1], 10); // "4" → 정수 4
+    return parseInt(match[1], 10);
   };
-
-  /** 2) 폴더에서 이미지 불러오기 → 초기 state로 복사 */
   const aiContext = require.context("../imgs/ai", false, /\.(png|jpe?g|svg)$/);
   const realContext = require.context(
     "../imgs/real",
@@ -560,39 +345,33 @@ const Main = () => {
   const aiImages = aiContext.keys().map(aiContext);
   const realImages = realContext.keys().map(realContext);
 
-  // unused 배열에 처음에만 복사 (마운트 시 1회)
   const [aiUnused, setAiUnused] = useState(() => [...aiImages]);
   const [realUnused, setRealUnused] = useState(() => [...realImages]);
 
-  /** 3) 현재 라운드에서 보여줄 그림 2장 (AI 1, REAL 1) */
+  // 호출된 그림 정보
   const [paintings, setPaintings] = useState([
     { id: "left", background: "", type: "" },
     { id: "right", background: "", type: "" },
   ]);
 
-  // ------------------------- 게임/문제 출제 로직 -------------------------
-  /** 새 문제(라운드) 불러오기 */
   const loadNewQuestion = () => {
-    // 이미 10라운드를 모두 마쳤다면 더 이상 문제 없음.
     if (roundCount > 10) {
       endGame();
       return;
     }
 
-    // 더 이상 뽑을 이미지가 없을 때
     if (aiUnused.length === 0 || realUnused.length === 0) {
       endGame();
       return;
     }
 
-    // AI/REAL 각각 1장씩 랜덤 추출
     const aiIndex = Math.floor(Math.random() * aiUnused.length);
     const realIndex = Math.floor(Math.random() * realUnused.length);
 
     const selectedAi = aiUnused[aiIndex];
     const selectedReal = realUnused[realIndex];
 
-    // 50% 확률로 왼쪽=AI / 오른쪽=REAL 또는 반대
+    // 작품 좌우 랜덤으로 뽑는 함수수
     const isAiLeft = Math.random() < 0.5;
     let newPaintings;
     if (isAiLeft) {
@@ -608,7 +387,6 @@ const Main = () => {
     }
     setPaintings(newPaintings);
 
-    // 뽑은 2장 모두 unused 배열에서 제거
     const newAiUnused = [...aiUnused];
     newAiUnused.splice(aiIndex, 1);
     const newRealUnused = [...realUnused];
@@ -617,111 +395,58 @@ const Main = () => {
     setAiUnused(newAiUnused);
     setRealUnused(newRealUnused);
 
-    // 대화/모달 초기화
     setConversationStage(0);
     setSelectedPainting(null);
 
     RandomChat();
   };
 
-  /** 그림 선택 시 정답 체크 & 다음 문제 */
+  // 작품 선택 함수
   const handleSelect = (direction) => {
     const chosen = paintings.find((p) => p.id === direction);
     const realPainting = paintings.find((p) => p.type === "real");
     if (realPainting) {
-      // "real_4.jpg" → 4
       const realId = extractRealIdFromPath(realPainting.background);
       if (realId !== null) {
-        // seenRealIds 배열 업데이트
         const updated = [...seenRealIds, realId];
         setSeenRealIds(updated);
 
-        // 로컬 스토리지에도 즉시 반영
         localStorage.setItem("seenRealIds", JSON.stringify(updated));
       }
     }
 
     if (!chosen) return;
 
-    // 정답 (type === "real")
     if (chosen.type === "real") {
       setCorrectCount((prev) => prev + 1);
-      // alert(`정답! 현재 점수: ${correctCount + 1}`);
     } else {
-      // alert(`오답! 현재 점수: ${correctCount}`);
     }
 
-    // 만약 이번이 10라운드라면 이 선택을 마지막으로 게임 종료
     if (roundCount === 10) {
-      // 마지막 정답 체크 후 바로 종료
       endGame();
     } else {
-      // 아직 10라운드 미만이면 다음 문제로 진행
       setRoundCount((prev) => prev + 1);
       loadNewQuestion();
     }
   };
 
-  /** 게임 종료 → <Loading>화면 표시로 전환 */
+  // 게임 끝나는거
   const endGame = () => {
-    // alert(`게임 종료!\n최종 점수: ${correctCount} / 10`);
-    // 게임 화면 감추고 <Loading>만 표시
     setIsGameOver(true);
   };
 
-  // ------------------------- 대화 관련 -------------------------
-  const getChatText = () => {
-    switch (conversationStage) {
-      case 0:
-        return (
-          <>
-            {dialogueLines[0]}
-            <br />
-            {dialogueLines[1]}
-          </>
-        );
-      case 1:
-        return (
-          <>
-            오~ 좀 더 자세히 보시겠습니까? <br />
-            어떤 그림이 궁금하시죠?
-          </>
-        );
-      case 2:
-        return (
-          <>
-            오! 손님, 결정하셨습니까? <br />
-            어떤 작품을 구매하시겠습니까요?
-          </>
-        );
-      default:
-        return null;
-    }
-  };
-
-  // ------------------------- 첫 문제 로드 -------------------------
   useEffect(() => {
-    (async () => {
-      try {
-        // paintings가 비어있고, roundCount=1 일 때만 첫 문제 로드
-        if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
-          await loadNewQuestion();
-        }
-        // eslint-disable-next-line
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
+      loadNewQuestion();
+    }
   }, [aiUnused, realUnused]);
 
-  // ------------------------- 렌더링 -------------------------
-  // 1) 게임이 끝났다면 <Loading>만 보여줌
+  //게임 끝나면 로딩페이지 호출
   if (isGameOver) {
     return <Loading correctCount={correctCount} />;
   }
 
-  // 2) 게임 진행 중이면 기존 화면 렌더
-
+  // 라운드 게이지 바 비율
   const barWidthPercent = ((roundCount - 1) / 9) * 100;
 
   return (
@@ -775,62 +500,13 @@ const Main = () => {
         </Painting>
       </PaintingWrap>
 
-      <Chat>
-        <img src={chat1_1} alt="말풍선이미지" />
-        <h2>{getChatText()}</h2>
-
-        <SubChat>
-          <img src={chat3} alt="선택말풍선이미지" />
-          <img src={npc1head} alt="여욱이" id="npc-head" />
-
-          {conversationStage === 0 && (
-            <>
-              <SubText onClick={() => setConversationStage(1)}>
-                <img src={cursor} alt="손가락" />
-                <p>자세히 볼래!</p>
-              </SubText>
-              <SubText onClick={() => setConversationStage(2)}>
-                <img src={cursor} alt="손가락" />
-                <h3>선택할래!</h3>
-              </SubText>
-            </>
-          )}
-
-          {conversationStage === 1 && (
-            <>
-              <SubText onClick={() => setSelectedPainting("left")}>
-                <img src={cursor} alt="손가락" />
-                <p>왼쪽 그림!</p>
-              </SubText>
-              <SubText onClick={() => setSelectedPainting("right")}>
-                <img src={cursor} alt="손가락" />
-                <h3>오른쪽 그림!</h3>
-              </SubText>
-              <SubText onClick={() => setConversationStage(0)}>
-                <img src={cursor} alt="손가락" />
-                <h4>안궁금해!</h4>
-              </SubText>
-            </>
-          )}
-
-          {conversationStage === 2 && (
-            <>
-              <SubText onClick={() => handleSelect("left")}>
-                <img src={cursor} alt="손가락" />
-                <p>왼쪽 그림!</p>
-              </SubText>
-              <SubText onClick={() => handleSelect("right")}>
-                <img src={cursor} alt="손가락" />
-                <h3>오른쪽 그림!</h3>
-              </SubText>
-              <SubText onClick={() => setConversationStage(0)}>
-                <img src={cursor} alt="손가락" />
-                <h4>다시 볼래!</h4>
-              </SubText>
-            </>
-          )}
-        </SubChat>
-      </Chat>
+      <Chat
+        conversationStage={conversationStage}
+        dialogueLines={dialogueLines}
+        setConversationStage={setConversationStage}
+        handleSelect={handleSelect}
+        setSelectedPainting={setSelectedPainting}
+      ></Chat>
 
       {selectedPainting && (
         <ModalBackground onClick={() => setSelectedPainting(null)}>

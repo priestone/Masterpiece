@@ -114,7 +114,7 @@ const Chat = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 101;
+  z-index: 98;
 
   #npc-head {
     display: none;
@@ -210,8 +210,8 @@ const Home = () => {
   return (
     <Container>
       <Helmet>
-              <title>누군가의 섬</title>
-            </Helmet>
+        <title>누군가의 섬</title>
+      </Helmet>
       <Logo>
         <img src={logo} alt="로고" />
       </Logo>
