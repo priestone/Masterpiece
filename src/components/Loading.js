@@ -22,12 +22,18 @@ const Npc = styled.div`
   img {
     width: 300px;
     height: auto;
-    transform: translateX(20px);
   }
   position: absolute;
   bottom: 40%;
   left: 50%;
   transform: translateX(-50%);
+
+  @media screen and (max-width: 440px) {
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
 `;
 
 const Npc3 = styled.div`
@@ -40,6 +46,13 @@ const Npc3 = styled.div`
   bottom: 40%;
   left: 50%;
   transform: translateX(-50%);
+  @media screen and (max-width: 440px) {
+    img {
+      width: 170px;
+      height: auto;
+      transform: translateX(20px);
+    }
+  }
 `;
 
 const Chat = styled.div`
