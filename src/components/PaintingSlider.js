@@ -7,7 +7,6 @@ import paintframe from "../components/img/paintframe.png";
 import styled from "styled-components";
 import real_0 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
-import { data } from "../data/Data";
 import { useState } from "react";
 
 const CustomSwiper = styled(Swiper)`

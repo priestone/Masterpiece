@@ -184,7 +184,7 @@ const Button = styled.button`
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
 
-  const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
+  // const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];
 
   useEffect(() => {
     const storedIds = JSON.parse(localStorage.getItem("seenRealIds")) || [];

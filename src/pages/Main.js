@@ -439,7 +439,9 @@ const Main = () => {
     if (paintings[0].background === "" && !isGameOver && roundCount <= 10) {
       loadNewQuestion();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aiUnused, realUnused]);
+  // 위 주석을 달면 의존성 무시 가능
 
   //게임 끝나면 로딩페이지 호출
   if (isGameOver) {
