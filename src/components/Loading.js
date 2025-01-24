@@ -103,6 +103,36 @@ const Chat = styled.div`
   }
 `;
 
+const Touchtext = styled.div`
+  color: white;
+  font-family: "Noto Sans KR";
+  font-weight: bold;
+  position: absolute;
+  font-size: 25px;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media screen and (max-width: 1400px) {
+    font-size: 23px;
+    bottom: 7%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 20px;
+    bottom: 6%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 300px;
+    text-align: center;
+    font-size: 18px;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+
 const Loading = ({ correctCount }) => {
   const [clickCount, setClickCount] = useState(0);
   const [message, setMessage] = useState(
@@ -150,6 +180,8 @@ const Loading = ({ correctCount }) => {
         <img src={chat1} alt="말풍선이미지" />
         <h2 dangerouslySetInnerHTML={{ __html: message }}></h2>
       </Chat>
+
+      <Touchtext>화면을 터치해 다음으로 넘어가세요</Touchtext>
     </Container>
   );
 };
