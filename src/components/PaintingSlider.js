@@ -28,6 +28,7 @@ const CustomSwiper = styled(Swiper)`
     width: 450px;
     height: 450px;
     z-index: 10;
+    box-shadow: 10px 40px 20px rgba(0, 0, 0, 0.6);
   }
 
   .artwork {
@@ -64,14 +65,16 @@ const CustomSwiper = styled(Swiper)`
   }
 
   .swiper-pagination-bullet {
-    background: #ffb400;
+    background: #ddd;
     width: 14px;
     height: 14px;
     opacity: 0.7;
+    transition: 0.3s ease;
   }
 
   .swiper-pagination-bullet-active {
-    background: #444;
+    background: #ffb400;
+    transform: scale(1.3);
   }
 `;
 
