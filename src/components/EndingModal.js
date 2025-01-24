@@ -92,11 +92,12 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   color: #e9e4d3;
+  padding: 0 10px;
 
   h2 {
     font-size: 54px;
     /* font-weight: bold; */
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
   }
 
   h3 {
