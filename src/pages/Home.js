@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import chat1 from "../components/img/chat/chat1_2.png";
 import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
   width: 100%;
@@ -208,6 +209,9 @@ const Home = () => {
 
   return (
     <Container>
+      <Helmet>
+              <title>누군가의 섬</title>
+            </Helmet>
       <Logo>
         <img src={logo} alt="로고" />
       </Logo>
