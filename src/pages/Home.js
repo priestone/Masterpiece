@@ -114,7 +114,7 @@ const Chat = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 98;
+  z-index: 101;
 
   #npc-head {
     display: none;
