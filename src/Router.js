@@ -3,12 +3,14 @@ import Home from "./pages/Home";
 import Main from "./pages/Main";
 import PageNotFound from "./pages/PageNotFound";
 import Ending from "./pages/Ending";
+import Tutorial from "./components/Tutorial";
 
 const Router = () => {
   return (
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/tutorial" element={<Tutorial></Tutorial>}></Route>
         <Route path="/main" element={<Main></Main>}></Route>
         <Route path="/ending" element={<Ending></Ending>}></Route>
         <Route path="/*" element={<PageNotFound></PageNotFound>}></Route>

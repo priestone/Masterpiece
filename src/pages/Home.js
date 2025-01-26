@@ -228,7 +228,7 @@ const Home = () => {
           </h2>
           <img src={npc1head} alt="여욱이전신" id="npc-head" />
         </Chat>
-        <Link to={"/main"}>
+        <Link to={"/tutorial"}>
           <h3>화면을 터치해 시작해보세요</h3>
         </Link>
       </Wrap>
