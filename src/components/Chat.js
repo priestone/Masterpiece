@@ -281,7 +281,7 @@ const Chat = ({
             </SubText>
             <SubText onClick={() => setConversationStage(0)}>
               <img src={cursor} alt="손가락" />
-              <h4>안궁금해!</h4>
+              <h4>그만 볼래!</h4>
             </SubText>
           </>
         )}
