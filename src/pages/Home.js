@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import homeBg from "./backgroundImg/homeBg.jpg";
 import homeMoBg from "./backgroundImg/homeMoBg.jpg";
 import logo from "../components/img/Logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import chat1 from "../components/img/chat/chat1_2.png";
 import npc1body from "../components/img/npc/1_body.png";
 import npc1head from "../components/img/npc/1_head.png";
@@ -114,7 +114,7 @@ const Chat = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 98;
+  z-index: 101;
 
   #npc-head {
     display: none;
@@ -194,6 +194,28 @@ const Npc1 = styled.div`
   }
 `;
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 9999;
+  animation: inverseCircle 3s reverse forwards; /* 애니메이션 설정 */
+
+  @keyframes inverseCircle {
+    0% {
+      clip-path: circle(100% at center); /* 화면 전체 */
+      background-color: black;
+    }
+    100% {
+      clip-path: circle(0% at center); /* 원형 구멍 사라짐 */
+      background-color: black;
+    }
+  }
+`;
+
 const Home = () => {
   const dialogues = [
     "자자! 둘러보시죠~! / 찬~찬히 둘러보셔도 됩니다요!",
@@ -202,10 +224,25 @@ const Home = () => {
   ];
 
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleChatClick = () => {
     setCurrentDialogueIndex((prevIndex) => (prevIndex + 1) % dialogues.length);
   };
+
+  const handleStartClick = () => {
+    setIsOverlayVisible(true);
+  };
+
+  useEffect(() => {
+    if (isOverlayVisible) {
+      // 애니메이션이 끝난 후 로딩 페이지로 이동
+      setTimeout(() => {
+        navigate("/tutorial"); // 로딩 페이지로 이동
+      }, 3000);
+    }
+  }, [isOverlayVisible, navigate]);
 
   return (
     <Container>
@@ -215,6 +252,7 @@ const Home = () => {
       <Logo>
         <img src={logo} alt="로고" />
       </Logo>
+      {isOverlayVisible && <Overlay />}
       <Wrap>
         <Chat>
           <img src={chat1} alt="말풍선이미지" />
@@ -228,7 +266,7 @@ const Home = () => {
           </h2>
           <img src={npc1head} alt="여욱이전신" id="npc-head" />
         </Chat>
-        <Link to={"/tutorial"}>
+        <Link onClick={handleStartClick}>
           <h3>화면을 터치해 시작해보세요</h3>
         </Link>
       </Wrap>
