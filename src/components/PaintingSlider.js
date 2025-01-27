@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
+import painting_info from "../components/img/paintinfo.jpg";
 import styled from "styled-components";
 import real_0 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
@@ -14,10 +15,12 @@ const CustomSwiper = styled(Swiper)`
   height: 480px;
 
   .swiper-slide {
+    height: 100%;
+    min-height: 530px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    border-radius: 10px;
+    align-items: flex-start;
+    position: relative;
     @media screen and (max-width: 440px) {
       height: 360px;
     }
@@ -28,7 +31,7 @@ const CustomSwiper = styled(Swiper)`
     width: 450px;
     height: 450px;
     z-index: 10;
-    box-shadow: 10px 40px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
   }
 
   .artwork {
@@ -39,14 +42,35 @@ const CustomSwiper = styled(Swiper)`
     object-fit: cover;
   }
 
+  .info {
+    position: absolute;
+    bottom: -42%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    img {
+      max-width: 100px;
+      height: auto;
+      object-fit: contain;
+      margin: 5px 0;
+    }
+
+    @media screen and (max-width: 440px) {
+      bottom: -22%;
+      img {
+        max-width: 80px;
+      }
+    }
+  }
+
   .swiper-slide img {
     width: 400px;
     height: 400px;
-    /* background-color: lightsalmon; */
+    cursor: pointer;
 
     @media screen and (max-width: 440px) {
-      width: 270px;
-      height: 270px;
+      width: 320px;
+      height: 320px;
     }
   }
 
@@ -64,7 +88,7 @@ const CustomSwiper = styled(Swiper)`
     }
   }
 
-  .swiper-pagination-bullet {
+  /* .swiper-pagination-bullet {
     background: #ddd;
     width: 14px;
     height: 14px;
@@ -75,7 +99,7 @@ const CustomSwiper = styled(Swiper)`
   .swiper-pagination-bullet-active {
     background: #ffb400;
     transform: scale(1.3);
-  }
+  } */
 `;
 
 const PaintingSlider = ({ paintings }) => {
@@ -114,14 +138,14 @@ const PaintingSlider = ({ paintings }) => {
         modules={[Navigation, Pagination]}
         spaceBetween={60}
         navigation
-        pagination={{ clickable: true }}
+        // pagination={{ clickable: true }}
         loop
         breakpoints={{
           1400: { slidesPerView: 3, spaceBetween: 40 },
           1000: { slidesPerView: 2, spaceBetween: 30 },
           440: { slidesPerView: 1, spaceBetween: 20 },
         }}
-        style={{ paddingBottom: "30px" }}
+        // style={{ paddingBottom: "30px" }}
       >
         {paintings.map((painting) => (
           <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
@@ -131,6 +155,9 @@ const PaintingSlider = ({ paintings }) => {
               src={getImageById(painting.id) || real_0}
               alt={painting.title}
             />
+            <div className="info" style={{ marginBottom: "100px" }}>
+              <img src={painting_info} alt="painting_info" />
+            </div>
           </SwiperSlide>
         ))}
       </CustomSwiper>
