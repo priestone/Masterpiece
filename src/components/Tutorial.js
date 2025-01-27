@@ -69,12 +69,16 @@ const Chat = styled.div`
     transform: translateX(-50%);
 
     h2 {
-      width: 200px;
-      font-size: 15px;
+      width: 250px;
+      font-size: 13px;
       line-height: 24px;
+      position: absolute;
+      top: 26%;
+      left: 52%;
+      transform: translateX(-52%);
 
       span {
-        font-size: 16px;
+        font-size: 13px;
       }
     }
   }
@@ -92,7 +96,8 @@ const Touchtext = styled.div`
   animation: blink 2.5s infinite;
 
   @keyframes blink {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0.8;
     }
     50% {
@@ -125,7 +130,7 @@ const Tutorial = () => {
   const [clickCount, setClickCount] = useState(0);
 
   const dialogues = [
-    "에구구 보아하니 사기꾼 여욱에게 걸리신 것 같군요..",
+    "에구구 보아하니 사기꾼 여욱에게 / 걸리신 것 같군요..",
     "아차~! 처음 뵙겠습니다! / 저는 박물관 관장 <span>부엉</span>이라고 합니다!",
     "여욱 녀석.. 아마 AI가 그린 정교한 가품과 / 사람이 그린 진품을 보여줄 것 입니다!",
     "손님께서는 그 두 그림을 잘 살펴보시고 / <span>사람이 그린 진품</span>을 고르시면 됩니다!",
