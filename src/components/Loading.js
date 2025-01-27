@@ -192,7 +192,7 @@ const Loading = ({ correctCount }) => {
         <h2 dangerouslySetInnerHTML={{ __html: message }}></h2>
       </Chat>
 
-      <Touchtext>화면을 터치해 다음으로 넘어가세요</Touchtext>
+      <Touchtext>말풍선을 터치해 다음으로 넘어가세요</Touchtext>
     </Container>
   );
 };
