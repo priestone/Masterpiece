@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import endingFloor from "./backgroundImg/endingFloor.png";
-import endingBg from "./backgroundImg/endingBg.jpg";
+// import endingBg from "./backgroundImg/endingBg.jpg";
+import endingBg_01 from "./backgroundImg/endingBg_01.jpg";
 import endingMoBg from "./backgroundImg/endingMoBg.jpg";
 import chat2_1 from "../components/img/chat/chat2_1.png";
 import body from "../components/img/npc/2_body.png";
@@ -14,7 +15,7 @@ import { Helmet } from "react-helmet-async";
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background: url(${endingBg});
+  background: url(${endingBg_01});
   padding-top: 50px;
   position: relative;
   overflow-x: hidden;
