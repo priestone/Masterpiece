@@ -211,7 +211,7 @@ const TextWrapper = styled.div`
     }
 
     h4 {
-      font-size: 16px;
+      font-size: 15px;
       align-self: flex-end;
     }
 
