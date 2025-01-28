@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import painting_info from "../components/img/paintinfo.jpg";
+import cursor from "../components/img/cursor.png";
 import styled from "styled-components";
 import real_0 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
@@ -74,12 +75,35 @@ const CustomSwiper = styled(Swiper)`
     }
   }
 
-  .swiper-button-next,
+  /* .swiper-button-next,
   .swiper-button-prev {
     color: #ffb400;
     @media screen and (max-width: 440px) {
       transform: translateY(-40px);
     }
+  } */
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none;
+  }
+
+  .swiper-button-next {
+    background-image: url(${cursor});
+  }
+
+  .swiper-button-prev {
+    background-image: url(${cursor});
+    transform: scaleX(-1);
   }
 
   .swiper-pagination {
@@ -136,7 +160,7 @@ const PaintingSlider = ({ paintings }) => {
     <>
       <CustomSwiper
         modules={[Navigation, Pagination]}
-        spaceBetween={60}
+        spaceBetween={10}
         navigation
         // pagination={{ clickable: true }}
         loop

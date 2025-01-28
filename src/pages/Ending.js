@@ -15,7 +15,6 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   background: url(${endingBg});
-  background-size: cover;
   padding-top: 50px;
   position: relative;
   overflow-x: hidden;
@@ -128,12 +127,12 @@ const Chat = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-  width: 360px;
+  width: 400px;
   display: flex;
   justify-content: space-between;
   position: absolute;
   bottom: 18%;
-  right: 5%;
+  right: 10%;
   z-index: 10;
   .result {
     color: #ffe000;

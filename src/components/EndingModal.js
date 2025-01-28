@@ -14,6 +14,21 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 999;
+  animation: bounceIn 0.5s ease-out;
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const ModalContent = styled.div`
@@ -34,7 +49,7 @@ const ModalContent = styled.div`
   @media screen and (max-width: 440px) {
     flex-direction: column;
     /* width: 90%; */
-    /* padding: 50px; */
+    padding: 20px;
   }
 `;
 
@@ -64,8 +79,8 @@ const ImageWrapper = styled.div`
     padding-right: 35px;
 
     img {
-      width: 450px;
-      height: 450px;
+      width: 430px;
+      height: 430px;
     }
   }
   @media screen and (max-width: 650px) {
@@ -91,25 +106,25 @@ const TextWrapper = styled.div`
   flex: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   color: #e9e4d3;
   padding: 0 10px;
 
   h2 {
     font-size: 54px;
-    /* font-weight: bold; */
-    margin: 20px 0 30px;
+    font-weight: 700;
+    margin: 10px 0 30px;
   }
 
   h3 {
     font-size: 30px;
-    /* font-weight: bold; */
     margin-bottom: 30px;
   }
 
   h4 {
-    font-size: 30px;
-    /* font-weight: bold; */
+    font-size: 22px;
+    font-style: italic;
+    align-self: flex-end;
     margin-bottom: 50px;
   }
 
@@ -123,33 +138,38 @@ const TextWrapper = styled.div`
   @media screen and (max-width: 1400px) {
     h2 {
       font-size: 48px;
+      margin: 60px 0 10px;
     }
 
     h3 {
       font-size: 28px;
+      margin-bottom: 10px;
     }
 
     h4 {
-      font-size: 28px;
+      font-size: 22px;
+      margin-bottom: 10px;
     }
 
     p {
       font-size: 22px;
       line-height: 32px;
+      margin-bottom: 60px;
     }
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1000px) {
+    justify-content: center;
     h2 {
       font-size: 42px;
     }
 
     h3 {
       font-size: 22px;
+      margin: 20px 0 50px;
     }
 
     h4 {
       font-size: 22px;
-      margin-bottom: 20px;
     }
 
     p {
@@ -160,6 +180,7 @@ const TextWrapper = styled.div`
   @media screen and (max-width: 1000px) {
     h2 {
       font-size: 40px;
+      margin-top: 100px;
     }
 
     h3 {
@@ -167,13 +188,14 @@ const TextWrapper = styled.div`
     }
 
     h4 {
-      font-size: 22px;
+      font-size: 18px;
       margin-bottom: 20px;
     }
 
     p {
       font-size: 20px;
       line-height: 28px;
+      margin-bottom: 100px;
     }
   }
 
@@ -181,6 +203,7 @@ const TextWrapper = styled.div`
     margin-bottom: 50px;
     h2 {
       font-size: 22px;
+      margin: 2px 0 10px;
     }
 
     h3 {
@@ -189,6 +212,7 @@ const TextWrapper = styled.div`
 
     h4 {
       font-size: 16px;
+      align-self: flex-end;
     }
 
     p {
