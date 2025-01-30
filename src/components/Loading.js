@@ -5,6 +5,7 @@ import emotion2 from "../components/img/emotion/emotion_2.png";
 import emotion3 from "../components/img/emotion/emotion_3.png";
 import chat1 from "../components/img/chat/chat1_2.png";
 import { useNavigate } from "react-router-dom";
+import emotion5 from "../components/img/emotion/emotion_5.png"
 
 const Container = styled.div`
   width: 100%;
@@ -19,18 +20,37 @@ const Container = styled.div`
 `;
 
 const Npc = styled.div`
-  img {
-    width: 300px;
-    height: auto;
-  }
-  position: absolute;
-  bottom: 40%;
-  left: 50%;
-  transform: translateX(-50%);
+
+img {
+  width: 300px;
+  height: auto;
+}
+position: absolute;
+bottom: 40%;
+left: 50%;
+transform: translateX(-50%);
 
   @media screen and (max-width: 440px) {
     img {
       width: 200px;
+      height: auto;
+    }
+  }
+`;
+const Npc2 = styled.div`
+
+img {
+  width: 150px;
+  height: auto;
+}
+position: absolute;
+bottom: 40%;
+left: 50%;
+transform: translateX(-50%);
+
+  @media screen and (max-width: 440px) {
+    img {
+      width: 120px;
       height: auto;
     }
   }
@@ -146,6 +166,7 @@ const Touchtext = styled.div`
 
 const Loading = ({ correctCount }) => {
   const [clickCount, setClickCount] = useState(0);
+  const [showFullNpc, setShowFullNpc] = useState(true); // 처음엔 전신 이미지를 보여줌
   const [message, setMessage] = useState(
     `히야~ 손님께서는 <span style="color:#0fb3cf; font-family:Noto Sans KR; font-weight:bold;">${correctCount}개</span>의 진품을<br />구매하셨습니다요!`
   );
@@ -153,7 +174,10 @@ const Loading = ({ correctCount }) => {
 
   const handleChatClick = () => {
     if (clickCount === 0) {
-      // 첫 번째 클릭: 맞춘 갯수에 따른 메시지
+      // 첫 번째 클릭 시 전신 이미지 숨기고 반응 이미지 출력
+      setShowFullNpc(false);
+      
+      // 맞춘 개수에 따른 메시지 변경
       if (correctCount <= 3) {
         setMessage("이야~ 오늘도 손님 덕분에 <br /> 기분이 하늘을 찌릅니다요!");
       } else if (correctCount <= 8) {
@@ -171,20 +195,29 @@ const Loading = ({ correctCount }) => {
 
   return (
     <Container>
-      {correctCount <= 3 && (
-        <Npc>
-          <img src={emotion2} alt="여욱이 하" />
-        </Npc>
-      )}
-      {correctCount > 3 && correctCount <= 8 && (
-        <Npc3>
-          <img src={emotion3} alt="여욱이 중" />
-        </Npc3>
-      )}
-      {correctCount > 8 && (
-        <Npc>
-          <img src={emotion1} alt="여욱이 상" />
-        </Npc>
+      {/* 처음에는 전신 이미지 표시, 클릭하면 반응 이미지로 변경 */}
+      {showFullNpc ? (
+        <Npc2>
+          <img src={emotion5} alt="여욱이 전신" className="first"/>
+        </Npc2>
+      ) : (
+        <>
+          {correctCount <= 3 && (
+            <Npc>
+              <img src={emotion2} alt="여욱이 하" />
+            </Npc>
+          )}
+          {correctCount > 3 && correctCount <= 8 && (
+            <Npc3>
+              <img src={emotion3} alt="여욱이 중" />
+            </Npc3>
+          )}
+          {correctCount > 8 && (
+            <Npc>
+              <img src={emotion1} alt="여욱이 상" />
+            </Npc>
+          )}
+        </>
       )}
 
       <Chat onClick={handleChatClick}>

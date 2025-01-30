@@ -188,18 +188,6 @@ const Button = styled.button`
   }
 `;
 
-const PaintingInfo = styled.div`
-  width: 100vw;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-content: space-between;
-  img {
-    width: 80px;
-    height: auto;
-  }
-`;
-
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
 
