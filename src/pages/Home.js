@@ -202,7 +202,7 @@ const Overlay = styled.div`
   height: 100%;
   background-color: black;
   z-index: 9999;
-  animation: inverseCircle 3s reverse forwards; /* 애니메이션 설정 */
+  animation: inverseCircle 2s reverse forwards; /* 애니메이션 설정 */
 
   @keyframes inverseCircle {
     0% {
@@ -240,7 +240,7 @@ const Home = () => {
       // 애니메이션이 끝난 후 로딩 페이지로 이동
       setTimeout(() => {
         navigate("/tutorial"); // 로딩 페이지로 이동
-      }, 3000);
+      }, 2000);
     }
   }, [isOverlayVisible, navigate]);
 

@@ -15,7 +15,7 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 import Chat from "../components/Chat";
-import light from "../components/img/boatlight.png";
+import light from "../components/img/boatlight.png"
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -338,6 +338,23 @@ const CloseButton = styled.button`
   }
 `;
 
+<<<<<<< HEAD
+=======
+const LightWrap = styled.div`
+width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: 880;
+mix-blend-mode: lighten;
+filter: opacity(0.6);
+`;
+
+>>>>>>> 361fdb312279ac52a6025ccb3ce293c7a39ba273
 const randomDialogues = [
   ["어떠십니까? 감히 말하건데", "손님 취향에 찰떡입니다요!"],
   ["헷, 이번에는 진짜 특급 희귀품!", "한 번 보시죠!"],
