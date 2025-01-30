@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { data } from "../data/Data";
 import { Helmet } from "react-helmet-async";
-import imginfo from "../components/img/paintinfo.jpg"
 
 const Container = styled.div`
   width: 100%;
@@ -189,17 +188,6 @@ const Button = styled.button`
   }
 `;
 
-const PaintingInfo = styled.div`
-width: 100vw;
-height: auto;
-display: flex;
-justify-content: center;
-align-content: space-between;
-img{
-  width: 80px;
-  height: auto;
-}
-`;
 
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
@@ -225,10 +213,6 @@ const Ending = () => {
       </Npc>
 
       <PaintingSlider paintings={selectedRealImages} />
-
-      <PaintingInfo>
-        <img src={imginfo} alt="이름표" />
-      </PaintingInfo>
 
 
       <Chat>
