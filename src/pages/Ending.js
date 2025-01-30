@@ -188,7 +188,6 @@ const Button = styled.button`
   }
 `;
 
-
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
 
@@ -213,7 +212,6 @@ const Ending = () => {
       </Npc>
 
       <PaintingSlider paintings={selectedRealImages} />
-
 
       <Chat>
         <img src={chat2_1} alt="말풍선이미지" />
