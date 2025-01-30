@@ -51,7 +51,8 @@
 
 ## 🚀배포주소
 
-Masterpiece 바로가기: <https://priestone.github.io/Masterpiece/>
+이 프로젝트는 팀 프로젝트로 진행되었으며, 배포는 원본 레포지토리에서 진행되었습니다.
+👉 **[Masterpiece 배포된 프로젝트 보기](https://priestone.github.io/Masterpiece/)**
 
 ## 🛠️기술 스택
 
