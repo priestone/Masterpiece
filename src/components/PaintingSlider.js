@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import paintframe from "../components/img/paintframe.png";
 import painting_info from "../components/img/paintinfo.jpg";
 import cursor from "../components/img/cursor.png";
+import light from "../components/img/museum light.png";
 import styled from "styled-components";
 import real_0 from "../imgs/real/real_0.jpg";
 import EndingModal from "./EndingModal";
@@ -25,6 +26,13 @@ const CustomSwiper = styled(Swiper)`
     @media screen and (max-width: 440px) {
       height: 360px;
     }
+  }
+
+  .light {
+    position: absolute;
+    z-index: 20;
+    top: -20%;
+    left: 15%;
   }
 
   .frame {
@@ -74,14 +82,6 @@ const CustomSwiper = styled(Swiper)`
       height: 320px;
     }
   }
-
-  /* .swiper-button-next,
-  .swiper-button-prev {
-    color: #ffb400;
-    @media screen and (max-width: 440px) {
-      transform: translateY(-40px);
-    }
-  } */
 
   .swiper-button-next,
   .swiper-button-prev {
@@ -173,6 +173,7 @@ const PaintingSlider = ({ paintings }) => {
       >
         {paintings.map((painting) => (
           <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
+            <img className="light" src={light} alt="light" />
             <img className="frame" src={paintframe} alt="frame" />
             <img
               className="artwork"
