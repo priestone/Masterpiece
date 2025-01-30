@@ -28,7 +28,7 @@ const CustomSwiper = styled(Swiper)`
     }
   }
 
-  /* .light {
+  .light {
     width: 200px;
     height: 400px;
     object-fit: cover;
@@ -36,7 +36,7 @@ const CustomSwiper = styled(Swiper)`
     z-index: 20;
     top: -20%;
     left: 15%;
-  } */
+  }
 
   .frame {
     position: absolute;
@@ -129,8 +129,6 @@ const CustomSwiper = styled(Swiper)`
   } */
 `;
 
-const Light = styled.div``;
-
 const PaintingSlider = ({ paintings }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPainting, setSelectedPainting] = useState(null);
@@ -176,11 +174,9 @@ const PaintingSlider = ({ paintings }) => {
         }}
         // style={{ paddingBottom: "30px" }}
       >
-        <Light>
-          <img className="light" src={light} alt="light" />
-        </Light>
         {paintings.map((painting) => (
           <SwiperSlide key={painting.id} onClick={() => openModal(painting)}>
+            <img className="light" src={light} alt="light" />
             <img className="frame" src={paintframe} alt="frame" />
             <img
               className="artwork"

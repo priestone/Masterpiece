@@ -171,6 +171,42 @@ const Npc = styled.div`
   }
 `;
 
+const LightWrap = styled.div`
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: 880;
+  mix-blend-mode: lighten;
+  filter: opacity(0.6);
+
+  img {
+    width: 400px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    img {
+      width: 300px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 90%;
+    top: 28%;
+    img {
+      width: 150px;
+    }
+  }
+`;
+
 const PaintingWrap = styled.div`
   width: 60%;
   display: flex;
@@ -181,10 +217,10 @@ const PaintingWrap = styled.div`
   left: 50%;
   transform: translate(-50%, -30%);
 
-  :nth-child(2) {
-    /* background-color: green; */
+  /* :nth-child(2) {
+    background-color: green;
     background: url(${loadingImg});
-  }
+  } */
 
   @media screen and (max-width: 1000px) {
     width: 80%;
@@ -200,7 +236,7 @@ const Painting = styled.div`
   width: 400px;
   height: 400px;
   /* background-color: salmon; */
-  background: url(${loadingImg});
+  /* background: url(${loadingImg}); */
   min-width: 400px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
 
@@ -285,6 +321,13 @@ const CloseButton = styled.button`
   transform: translateX(-50%);
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 50%;
+  }
 
   @media screen and (max-width: 1400px) {
     bottom: -20%;
@@ -293,20 +336,6 @@ const CloseButton = styled.button`
   @media screen and (max-width: 440px) {
     bottom: -20%;
   }
-`;
-
-const LightWrap = styled.div`
-  width: 75%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -30%);
-  z-index: 880;
-  mix-blend-mode: lighten;
-  filter: opacity(0.6);
 `;
 
 const randomDialogues = [
@@ -479,7 +508,7 @@ const Main = () => {
       <img src={mainBox} alt="박스배경" id="boxBg" />
 
       <RoundWrap>
-        <p>{roundCount} / 10</p>
+        {/* <p>{roundCount} / 10</p> */}
         <Round>
           <Bar style={{ width: `${barWidthPercent}%` }}>
             <img src={neoguri} alt="너구리이미지" id="neoguri" />
@@ -506,20 +535,24 @@ const Main = () => {
       <PaintingWrap>
         <Painting
           style={{
-            backgroundImage: `url(${paintings[0].background})`,
-            backgroundSize: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundImage: paintings[0].background
+              ? `url(${paintings[0].background}), url(${loadingImg})`
+              : `url(${loadingImg})`,
+            backgroundSize: "cover, cover",
+            backgroundPosition: "center, center",
+            backgroundRepeat: "no-repeat, no-repeat",
           }}
         >
           <img src={paintframe} alt="액자사진" id="frame" />
         </Painting>
         <Painting
           style={{
-            backgroundImage: `url(${paintings[1].background})`,
-            backgroundSize: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundImage: paintings[1].background
+              ? `url(${paintings[1].background}), url(${loadingImg})`
+              : `url(${loadingImg})`,
+            backgroundSize: "cover, cover",
+            backgroundPosition: "center, center",
+            backgroundRepeat: "no-repeat, no-repeat",
           }}
         >
           <img src={paintframe} alt="액자사진" id="frame" />

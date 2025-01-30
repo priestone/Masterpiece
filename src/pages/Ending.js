@@ -59,11 +59,6 @@ const Npc = styled.div`
   }
 `;
 
-const Light = styled.div`
-  img {
-  }
-`;
-
 const Chat = styled.div`
   width: 700px;
   position: absolute;
@@ -216,10 +211,6 @@ const Ending = () => {
       <Npc>
         <img className="body" src={body} alt="부엉이" />
       </Npc>
-
-      <Light>
-        <img className="light" src={light} alt="light" />
-      </Light>
 
       <PaintingSlider paintings={selectedRealImages} />
 
