@@ -15,7 +15,7 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 import Chat from "../components/Chat";
-import light from "../components/img/boatlight.png"
+import light from "../components/img/boatlight.png";
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -296,7 +296,7 @@ const CloseButton = styled.button`
 `;
 
 const LightWrap = styled.div`
-width: 75%;
+  width: 75%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -305,8 +305,8 @@ width: 75%;
   left: 50%;
   transform: translate(-50%, -30%);
   z-index: 880;
-mix-blend-mode: lighten;
-filter: opacity(0.6);
+  mix-blend-mode: lighten;
+  filter: opacity(0.6);
 `;
 
 const randomDialogues = [
