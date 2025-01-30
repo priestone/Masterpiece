@@ -92,7 +92,7 @@ const Chat = styled.div`
 
     h2 {
       position: absolute;
-      top: 32%;
+      top: 30%;
       left: 54%;
       transform: translateX(-54%);
       width: 200px;
@@ -157,7 +157,7 @@ const Loading = ({ correctCount }) => {
       if (correctCount <= 3) {
         setMessage("이야~ 오늘도 손님 덕분에 <br /> 기분이 하늘을 찌릅니다요!");
       } else if (correctCount <= 8) {
-        setMessage("쳇, 제법 눈썰미가 좋으신 것 같습니다요~");
+        setMessage("쳇, 손님께서는 제법 눈썰미가  <br />좋으신 것 같습니다요~");
       } else {
         setMessage("흑흑, 손님! 진품만 쏙쏙 고르셨군요..");
       }

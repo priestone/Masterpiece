@@ -52,7 +52,7 @@ const Logo = styled.div`
 
   @media screen and (max-width: 440px) {
     img {
-      margin: 30px auto;
+      margin: 50px auto;
       width: 416px;
     }
   }

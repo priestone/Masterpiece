@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import chat1 from "../components/img/chat/chat2_2.png";
 import npcBody from "../components/img/npc/2_body_2.png";
-import tutorialbg1 from "../pages/backgroundImg/_tutorialBg.jpg"
+import tutorialbg1 from "../pages/backgroundImg/tutorialBg.jpg"
 
 const Container = styled.div`
   width: 100%;
@@ -75,9 +75,9 @@ const Chat = styled.div`
       font-size: 13px;
       line-height: 24px;
       position: absolute;
-      top: 26%;
-      left: 52%;
-      transform: translateX(-52%);
+      top: 29%;
+      left: 58%;
+      transform: translateX(-58%);
 
       span {
         font-size: 13px;
