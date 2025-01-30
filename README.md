@@ -51,7 +51,7 @@
 
 ## 🚀배포주소
 
-Masterpiece 바로가기: <https://elena7993.github.io/Masterpiece/>
+Masterpiece 바로가기: <https://priestone.github.io/Masterpiece/>
 
 ## 🛠️기술 스택
 
