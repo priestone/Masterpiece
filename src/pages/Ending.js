@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { data } from "../data/Data";
 import { Helmet } from "react-helmet-async";
+import light from "../components/img/museum light.png";
 
 const Container = styled.div`
   width: 100%;
@@ -55,6 +56,11 @@ const Npc = styled.div`
     .body {
       display: none;
     }
+  }
+`;
+
+const Light = styled.div`
+  img {
   }
 `;
 
@@ -188,18 +194,6 @@ const Button = styled.button`
   }
 `;
 
-const PaintingInfo = styled.div`
-  width: 100vw;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-content: space-between;
-  img {
-    width: 80px;
-    height: auto;
-  }
-`;
-
 const Ending = () => {
   const [selectedRealImages, setSelectedRealImages] = useState([]);
 
@@ -222,6 +216,10 @@ const Ending = () => {
       <Npc>
         <img className="body" src={body} alt="부엉이" />
       </Npc>
+
+      <Light>
+        <img className="light" src={light} alt="light" />
+      </Light>
 
       <PaintingSlider paintings={selectedRealImages} />
 
