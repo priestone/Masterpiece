@@ -52,7 +52,7 @@ const Logo = styled.div`
 
   @media screen and (max-width: 440px) {
     img {
-      margin: 30px auto;
+      margin: 50px auto;
       width: 416px;
     }
   }
@@ -82,7 +82,7 @@ const Wrap = styled.div`
   h3 {
     font-size: 25px;
     position: absolute;
-    bottom: -60px;
+    bottom: -70px;
     left: 50%;
     transform: translateX(-50%);
   }

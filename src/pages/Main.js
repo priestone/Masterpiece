@@ -15,6 +15,7 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 import Chat from "../components/Chat";
+import light from "../components/img/boatlight.png"
 
 const HomeBtn = styled.div`
   position: fixed;
@@ -201,6 +202,7 @@ const Painting = styled.div`
   /* background-color: salmon; */
   background: url(${loadingImg});
   min-width: 400px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
 
   #frame {
     height: 420px;
@@ -291,6 +293,20 @@ const CloseButton = styled.button`
   @media screen and (max-width: 440px) {
     bottom: -20%;
   }
+`;
+
+const LightWrap = styled.div`
+width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: 880;
+mix-blend-mode: lighten;
+filter: opacity(0.6);
 `;
 
 const randomDialogues = [
@@ -481,6 +497,11 @@ const Main = () => {
       <Npc>
         <img src={npc1body} alt="여욱이" id="npc-body" />
       </Npc>
+
+      <LightWrap>
+        <img src={light} alt="조명" />
+        <img src={light} alt="조명" />
+      </LightWrap>
 
       <PaintingWrap>
         <Painting

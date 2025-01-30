@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import chat1 from "../components/img/chat/chat2_2.png";
 import npcBody from "../components/img/npc/2_body_2.png";
+import tutorialbg1 from "../pages/backgroundImg/tutorialBg.jpg"
 
 const Container = styled.div`
   width: 100%;
@@ -18,17 +19,18 @@ const Container = styled.div`
 
 const Npc = styled.div`
   img {
-    width: 300px;
+    width: 400px;
     height: auto;
   }
   position: absolute;
   bottom: 40%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 990;
 
   @media screen and (max-width: 440px) {
     img {
-      width: 200px;
+      width: 250px;
       height: auto;
     }
   }
@@ -73,9 +75,9 @@ const Chat = styled.div`
       font-size: 13px;
       line-height: 24px;
       position: absolute;
-      top: 26%;
-      left: 52%;
-      transform: translateX(-52%);
+      top: 29%;
+      left: 58%;
+      transform: translateX(-58%);
 
       span {
         font-size: 13px;
@@ -119,11 +121,36 @@ const Touchtext = styled.div`
     width: 300px;
     text-align: center;
     font-size: 18px;
-    bottom: 20%;
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
   }
 `;
+
+const Bg = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url(${tutorialbg1});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.9);
+  opacity: 0; /* 기본적으로 안 보이도록 설정 */
+  animation: fadeIn 1s forwards; /* 애니메이션 추가 */
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
 
 const Tutorial = () => {
   const navigate = useNavigate();
@@ -153,6 +180,7 @@ const Tutorial = () => {
           <img src={npcBody} alt="NPC 부엉이" />
         </Npc>
       )}
+     {clickCount > 0 && <Bg />}
 
       <Chat onClick={handleChatClick}>
         <img src={chat1} alt="말풍선이미지" />
@@ -163,7 +191,7 @@ const Tutorial = () => {
         ></h2>
       </Chat>
 
-      <Touchtext>화면을 터치해 계속 진행하세요</Touchtext>
+      <Touchtext>말풍선을 터치해 계속 진행하세요</Touchtext>
     </Container>
   );
 };

@@ -66,9 +66,9 @@ const Chat = styled.div`
   h2 {
     width: 400px;
     position: absolute;
-    top: 30%;
-    left: 54%;
-    transform: translateX(-54%);
+    top: 28%;
+    left: 52%;
+    transform: translateX(-52%);
     font-size: 23px;
     font-family: "Noto Sans KR";
     font-weight: bold;
@@ -92,7 +92,7 @@ const Chat = styled.div`
 
     h2 {
       position: absolute;
-      top: 32%;
+      top: 30%;
       left: 54%;
       transform: translateX(-54%);
       width: 200px;
@@ -137,7 +137,7 @@ const Touchtext = styled.div`
     width: 300px;
     text-align: center;
     font-size: 18px;
-    bottom: 20%;
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -155,9 +155,9 @@ const Loading = ({ correctCount }) => {
     if (clickCount === 0) {
       // 첫 번째 클릭: 맞춘 갯수에 따른 메시지
       if (correctCount <= 3) {
-        setMessage("이야~ 오늘도 손님 덕분에 기분이 하늘을 찌릅니다요!");
+        setMessage("이야~ 오늘도 손님 덕분에 <br /> 기분이 하늘을 찌릅니다요!");
       } else if (correctCount <= 8) {
-        setMessage("쳇, 제법 눈썰미가 좋으신 것 같습니다요~");
+        setMessage("쳇, 손님께서는 제법 눈썰미가  <br />좋으신 것 같습니다요~");
       } else {
         setMessage("흑흑, 손님! 진품만 쏙쏙 고르셨군요..");
       }
@@ -192,7 +192,7 @@ const Loading = ({ correctCount }) => {
         <h2 dangerouslySetInnerHTML={{ __html: message }}></h2>
       </Chat>
 
-      <Touchtext>화면을 터치해 다음으로 넘어가세요</Touchtext>
+      <Touchtext>말풍선을 터치해 다음으로 넘어가세요</Touchtext>
     </Container>
   );
 };
