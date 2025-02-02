@@ -29,6 +29,9 @@ const CustomSwiper = styled(Swiper)`
   }
 
   .light {
+    width: 200px;
+    height: 400px;
+    object-fit: cover;
     position: absolute;
     z-index: 20;
     top: -20%;

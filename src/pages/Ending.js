@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { data } from "../data/Data";
 import { Helmet } from "react-helmet-async";
+import light from "../components/img/museum light.png";
 
 const Container = styled.div`
   width: 100%;
