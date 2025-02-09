@@ -217,11 +217,6 @@ const PaintingWrap = styled.div`
   left: 50%;
   transform: translate(-50%, -30%);
 
-  /* :nth-child(2) {
-    background-color: green;
-    background: url(${loadingImg});
-  } */
-
   @media screen and (max-width: 1000px) {
     width: 80%;
   }
