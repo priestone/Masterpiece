@@ -1,13 +1,16 @@
 {
   "files": {
     "main.css": "/Masterpiece/static/css/main.61f2aa1b.css",
-    "main.js": "/Masterpiece/static/js/main.54d460c3.js",
+    "main.js": "/Masterpiece/static/js/main.c417432d.js",
+    "static/media/tutorialBg.jpg": "/Masterpiece/static/media/tutorialBg.683d4c0ed1d2135214d4.jpg",
+    "static/media/endingBg_01.jpg": "/Masterpiece/static/media/endingBg_01.4b4e39cce7997cbdfaa5.jpg",
     "static/media/homeBg.jpg": "/Masterpiece/static/media/homeBg.2ef47aa4af9378762711.jpg",
-    "static/media/endingBg.jpg": "/Masterpiece/static/media/endingBg.314ea604db9b7f79eb76.jpg",
     "static/media/emotion_2.png": "/Masterpiece/static/media/emotion_2.03a6bf991a90acf9acc7.png",
     "static/media/emotion_4.png": "/Masterpiece/static/media/emotion_4.3b1df2339eb3c06f98da.png",
+    "static/media/museum light.png": "/Masterpiece/static/media/museum light.c58f510caa22389a4398.png",
     "static/media/2_body_2.png": "/Masterpiece/static/media/2_body_2.747466f01a8c16381ce8.png",
     "static/media/ai_7.jpg": "/Masterpiece/static/media/ai_7.584abfefa304ba9262f3.jpg",
+    "static/media/boatlight.png": "/Masterpiece/static/media/boatlight.0c029a14acc337c0e679.png",
     "static/media/real_10.jpg": "/Masterpiece/static/media/real_10.357bf113efb06dde193a.jpg",
     "static/media/real_2.jpg": "/Masterpiece/static/media/real_2.68cff31fadf38efe9e2f.jpg",
     "static/media/ai_0.jpg": "/Masterpiece/static/media/ai_0.bcc0d58a670475070152.jpg",
@@ -50,6 +53,7 @@
     "static/media/ai_15.jpg": "/Masterpiece/static/media/ai_15.f6596d9d364a945a042f.jpg",
     "static/media/ai_14.jpg": "/Masterpiece/static/media/ai_14.9102058f3bb9506b1795.jpg",
     "static/media/real_7.jpg": "/Masterpiece/static/media/real_7.a81367583aca8e6055ca.jpg",
+    "static/media/emotion_5.png": "/Masterpiece/static/media/emotion_5.14f0ec2ad53eb6745520.png",
     "static/media/real_4.jpg": "/Masterpiece/static/media/real_4.828ac19d550a661f7a83.jpg",
     "static/media/real_9.jpg": "/Masterpiece/static/media/real_9.20bb5a115e7f5add19ed.jpg",
     "static/media/ai_17.jpg": "/Masterpiece/static/media/ai_17.46223b4359aad2d64849.jpg",
@@ -69,10 +73,10 @@
     "index.html": "/Masterpiece/index.html",
     "static/media/downarrow.svg": "/Masterpiece/static/media/downarrow.0687b2f6e0ac36775db802e6c73ea601.svg",
     "main.61f2aa1b.css.map": "/Masterpiece/static/css/main.61f2aa1b.css.map",
-    "main.54d460c3.js.map": "/Masterpiece/static/js/main.54d460c3.js.map"
+    "main.c417432d.js.map": "/Masterpiece/static/js/main.c417432d.js.map"
   },
   "entrypoints": [
     "static/css/main.61f2aa1b.css",
-    "static/js/main.54d460c3.js"
+    "static/js/main.c417432d.js"
   ]
 }
